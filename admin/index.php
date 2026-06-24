@@ -14,6 +14,9 @@ $ROOT        = dirname(__DIR__);                 // website root folder
 $CONTENT     = $ROOT . "/content.json";
 $UPLOAD_DIR  = $ROOT . "/uploads";
 $UPLOAD_URL  = "uploads";                         // path used inside the website
+$DATA_DIR    = $ROOT . "/data";
+$ENQ_FILE    = $DATA_DIR . "/enquiries.json";
+$SET_FILE    = $DATA_DIR . "/settings.json";
 
 /* Image slots shown in the panel (key => friendly label) */
 $SLOTS = [
@@ -70,6 +73,11 @@ function load_content($file) {
 }
 function save_content($file, $data) {
     file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+}
+function load_json_array($file) {
+    if (!file_exists($file)) return [];
+    $d = json_decode(file_get_contents($file), true);
+    return is_array($d) ? $d : [];
 }
 
 /* ---------- 3. LOGIN / LOGOUT ---------- */
@@ -154,7 +162,59 @@ if ($logged_in && $_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"
     }
 }
 
-$content = load_content($CONTENT);
+/* ---------- 4b. ENQUIRIES + INTEGRATIONS (only when logged in) ---------- */
+if ($logged_in) {
+
+    /* CSV export of all enquiries */
+    if (isset($_GET["export"]) && $_GET["export"] === "csv") {
+        $rows = load_json_array($ENQ_FILE);
+        header("Content-Type: text/csv; charset=utf-8");
+        header('Content-Disposition: attachment; filename="enquiries-' . date("Y-m-d") . '.csv"');
+        $out = fopen("php://output", "w");
+        fprintf($out, chr(0xEF) . chr(0xBB) . chr(0xBF)); // UTF-8 BOM for Excel
+        // collect all field keys
+        $cols = ["date", "form_type"];
+        foreach ($rows as $r) foreach (($r["fields"] ?? []) as $k => $v) if (!in_array($k, $cols)) $cols[] = $k;
+        fputcsv($out, $cols);
+        foreach ($rows as $r) {
+            $line = [];
+            foreach ($cols as $c) {
+                if ($c === "date") $line[] = $r["date"] ?? "";
+                elseif ($c === "form_type") $line[] = $r["form_type"] ?? "";
+                else $line[] = $r["fields"][$c] ?? "";
+            }
+            fputcsv($out, $line);
+        }
+        fclose($out);
+        exit;
+    }
+
+    /* Delete one enquiry */
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST["action"] ?? "") === "del_enquiry" && isset($_POST["id"])) {
+        $rows = array_values(array_filter(load_json_array($ENQ_FILE), function ($r) {
+            return ($r["id"] ?? "") !== $_POST["id"];
+        }));
+        if (!is_dir($DATA_DIR)) mkdir($DATA_DIR, 0775, true);
+        file_put_contents($ENQ_FILE, json_encode($rows, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+        $notice = "Enquiry deleted.";
+    }
+
+    /* Save integration settings (webhooks + notify email) */
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST["action"] ?? "") === "integrations") {
+        if (!is_dir($DATA_DIR)) mkdir($DATA_DIR, 0775, true);
+        $set = [
+            "webhook_url"  => trim($_POST["webhook_url"]  ?? ""),
+            "webhook_url2" => trim($_POST["webhook_url2"] ?? ""),
+            "notify_email" => trim($_POST["notify_email"] ?? ""),
+        ];
+        file_put_contents($SET_FILE, json_encode($set, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+        $notice = "Integration settings saved ✔";
+    }
+}
+
+$enquiries = array_reverse(load_json_array($ENQ_FILE));   // newest first
+$settings  = load_json_array($SET_FILE);
+$content   = load_content($CONTENT);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -319,6 +379,79 @@ $content = load_content($CONTENT);
         </div>
       <?php endforeach; ?>
       <button class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-6 py-2.5 rounded-lg transition-colors">Save Map</button>
+    </form>
+  </section>
+
+  <!-- ENQUIRIES -->
+  <section>
+    <div class="flex items-center justify-between mb-1">
+      <h2 class="text-lg font-extrabold text-slate-900">Enquiries / Form Submissions</h2>
+      <?php if (!empty($enquiries)): ?>
+        <a href="?export=csv" class="text-xs bg-green-600 hover:bg-green-700 text-white font-semibold px-3 py-2 rounded-lg">⬇ Export CSV (Excel/Sheets)</a>
+      <?php endif; ?>
+    </div>
+    <p class="text-sm text-slate-500 mb-5">Website na form mathi aavel badhi enquiry ahi dekhashe. CSV download kari ne Google Sheet/Excel ma kholi shako.</p>
+
+    <?php if (empty($enquiries)): ?>
+      <div class="bg-white border border-slate-200 rounded-xl p-8 text-center text-slate-400 text-sm">Have sudhi koi enquiry aavi nathi.</div>
+    <?php else: ?>
+      <div class="space-y-3">
+        <?php foreach ($enquiries as $e): ?>
+          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+            <div class="flex items-start justify-between gap-3 mb-2">
+              <div>
+                <span class="text-xs font-bold bg-amber-100 text-amber-700 px-2 py-0.5 rounded"><?= htmlspecialchars($e["form_type"] ?? "Enquiry") ?></span>
+                <span class="text-xs text-slate-400 ml-2"><?= htmlspecialchars($e["date"] ?? "") ?></span>
+              </div>
+              <form method="post" onsubmit="return confirm('Delete this enquiry?');">
+                <input type="hidden" name="action" value="del_enquiry">
+                <input type="hidden" name="id" value="<?= htmlspecialchars($e["id"] ?? "") ?>">
+                <button class="text-xs text-slate-400 hover:text-red-600">✕ Delete</button>
+              </form>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 text-sm">
+              <?php foreach (($e["fields"] ?? []) as $k => $v): if ($v === "") continue; ?>
+                <div><span class="font-semibold text-slate-600"><?= htmlspecialchars($k) ?>:</span> <span class="text-slate-800"><?= htmlspecialchars($v) ?></span></div>
+              <?php endforeach; ?>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    <?php endif; ?>
+  </section>
+
+  <!-- INTEGRATIONS -->
+  <section>
+    <h2 class="text-lg font-extrabold text-slate-900 mb-1">Send Data Anywhere (Integrations)</h2>
+    <p class="text-sm text-slate-500 mb-2">Niche webhook URL nakho, etle dareke nava enquiry e jagya e auto pahochi jashe — Google Sheet, Notion, Zapier, Make, ke koi pan platform.</p>
+    <details class="text-xs text-slate-500 mb-5 bg-amber-50 border border-amber-200 rounded-lg p-3">
+      <summary class="cursor-pointer font-semibold text-amber-700">Webhook URL kya thi malshe? (click karo)</summary>
+      <ul class="list-disc ml-5 mt-2 space-y-1">
+        <li><b>Google Sheet:</b> Sheety.co / SheetDB.io / SheetMonkey par account banavi, sheet jodo ane temani API/webhook URL ahi paste karo. (Athva Zapier/Make vapro.)</li>
+        <li><b>Notion:</b> Zapier ke Make.com ma "Webhook → Notion" automation banavo, ane temni "Catch Hook" URL ahi paste karo.</li>
+        <li><b>Zapier:</b> Zap banavo → Trigger "Webhooks by Zapier → Catch Hook" → URL copy → ahi paste.</li>
+        <li><b>Make.com:</b> "Custom webhook" module no address ahi paste karo.</li>
+      </ul>
+    </details>
+    <form method="post" class="bg-white rounded-xl border border-slate-200 p-5 space-y-4 shadow-sm max-w-3xl">
+      <input type="hidden" name="action" value="integrations">
+      <div>
+        <label class="text-sm font-semibold block mb-1">Webhook URL 1</label>
+        <input type="url" name="webhook_url" value="<?= htmlspecialchars($settings["webhook_url"] ?? "") ?>" placeholder="https://hooks.zapier.com/..."
+               class="w-full border border-slate-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+      </div>
+      <div>
+        <label class="text-sm font-semibold block mb-1">Webhook URL 2 (optional)</label>
+        <input type="url" name="webhook_url2" value="<?= htmlspecialchars($settings["webhook_url2"] ?? "") ?>" placeholder="biji platform mate..."
+               class="w-full border border-slate-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+      </div>
+      <div>
+        <label class="text-sm font-semibold block mb-1">Email Notification (optional)</label>
+        <input type="email" name="notify_email" value="<?= htmlspecialchars($settings["notify_email"] ?? "") ?>" placeholder="tamaru@email.com"
+               class="w-full border border-slate-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+        <p class="text-xs text-slate-400 mt-1">Dareke nava enquiry e aa email par notification aavshe (hosting par email support hovu joie).</p>
+      </div>
+      <button class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-6 py-2.5 rounded-lg transition-colors">Save Integrations</button>
     </form>
   </section>
 

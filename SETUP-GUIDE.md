@@ -54,6 +54,22 @@
 
 ---
 
+### Enquiries (form submissions) & Data anywhere:
+- Website na contact/corporate/newsletter form mathi aavel badhi enquiry
+  admin panel ni "Enquiries" section ma dekhashe.
+- **Export CSV** button thi download kari Google Sheet / Excel ma kholo.
+- **Send Data Anywhere (Integrations)**: ahi webhook URL paste karo etle
+  dareke nava enquiry e jagya e auto pahochi jashe:
+  - Google Sheet → Sheety / SheetDB / Zapier / Make ni webhook URL
+  - Notion → Zapier ke Make ni "Catch Hook" URL
+  - Biji koi platform → temni webhook URL
+- Email notification pan set kari shako (hosting par mail support hovu joie).
+
+> NOTE: `data/` folder ma enquiries save thay che ane e public mate blocked che
+> (`.htaccess`). Upload karta `data/` folder ni permission **755** rakho.
+
+---
+
 ## 3) Password badalvu (IMPORTANT - security)
 
 `admin/index.php` file kholo, line ~12 par:

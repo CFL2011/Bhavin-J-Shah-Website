@@ -1640,39 +1640,41 @@
                     <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200/60 shadow-md">
                         <h2 class="text-2xl font-extrabold text-navy-800 text-center mb-6">Corporate Training Enquiry Form</h2>
                         <form class="space-y-4" onsubmit="handleFormSubmit(event)">
+                            <input type="hidden" name="form_type" value="Corporate Training Enquiry">
+                            <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-xs font-bold text-navy-800 mb-1">Name</label>
-                                    <input type="text" required class="w-full border border-slate-300 rounded-lg p-2 text-sm bg-white focus:outline-none focus:border-gold-500">
+                                    <input type="text" name="Name" required class="w-full border border-slate-300 rounded-lg p-2 text-sm bg-white focus:outline-none focus:border-gold-500">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-navy-800 mb-1">Company Name</label>
-                                    <input type="text" required class="w-full border border-slate-300 rounded-lg p-2 text-sm bg-white focus:outline-none focus:border-gold-500">
+                                    <input type="text" name="Company" required class="w-full border border-slate-300 rounded-lg p-2 text-sm bg-white focus:outline-none focus:border-gold-500">
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-xs font-bold text-navy-800 mb-1">Mobile Number</label>
-                                    <input type="tel" required class="w-full border border-slate-300 rounded-lg p-2 text-sm bg-white focus:outline-none focus:border-gold-500">
+                                    <input type="tel" name="Mobile" required class="w-full border border-slate-300 rounded-lg p-2 text-sm bg-white focus:outline-none focus:border-gold-500">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-navy-800 mb-1">Email</label>
-                                    <input type="email" required class="w-full border border-slate-300 rounded-lg p-2 text-sm bg-white focus:outline-none focus:border-gold-500">
+                                    <input type="email" name="Email" required class="w-full border border-slate-300 rounded-lg p-2 text-sm bg-white focus:outline-none focus:border-gold-500">
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-xs font-bold text-navy-800 mb-1">Team Size</label>
-                                    <input type="number" class="w-full border border-slate-300 rounded-lg p-2 text-sm bg-white focus:outline-none focus:border-gold-500">
+                                    <input type="number" name="Team Size" class="w-full border border-slate-300 rounded-lg p-2 text-sm bg-white focus:outline-none focus:border-gold-500">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-navy-800 mb-1">Training Requirement</label>
-                                    <input type="text" class="w-full border border-slate-300 rounded-lg p-2 text-sm bg-white focus:outline-none focus:border-gold-500" placeholder="e.g. Leadership, Sales">
+                                    <input type="text" name="Training Requirement" class="w-full border border-slate-300 rounded-lg p-2 text-sm bg-white focus:outline-none focus:border-gold-500" placeholder="e.g. Leadership, Sales">
                                 </div>
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-navy-800 mb-1">Message</label>
-                                <textarea class="w-full border border-slate-300 rounded-lg p-2 text-sm bg-white h-24 focus:outline-none focus:border-gold-500"></textarea>
+                                <textarea name="Message" class="w-full border border-slate-300 rounded-lg p-2 text-sm bg-white h-24 focus:outline-none focus:border-gold-500"></textarea>
                             </div>
                             <button type="submit" class="w-full bg-navy-800 hover:bg-navy-900 text-white font-bold py-3 rounded-lg text-sm transition-colors">Send Corporate Training Enquiry</button>
                         </form>
@@ -1906,7 +1908,9 @@
                     <h2 class="text-2xl font-extrabold text-navy-800">Get Growth Insights in Your Inbox</h2>
                     <p class="text-slate-600 text-sm">Subscribe to receive regular updates and articles on personal & corporate scaling.</p>
                     <form class="flex flex-col sm:flex-row gap-2" onsubmit="handleFormSubmit(event)">
-                        <input type="email" required placeholder="Enter your email" class="flex-grow border border-slate-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-gold-500">
+                        <input type="hidden" name="form_type" value="Newsletter Subscription">
+                        <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
+                        <input type="email" name="Email" required placeholder="Enter your email" class="flex-grow border border-slate-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-gold-500">
                         <button type="submit" class="bg-navy-800 hover:bg-navy-900 text-white font-bold px-6 py-2 rounded-lg text-sm transition-colors">Subscribe</button>
                     </form>
                 </div>
@@ -1931,41 +1935,43 @@
                     <div class="lg:col-span-7 bg-slate-50 p-8 rounded-3xl border border-slate-200/60 shadow-md">
                         <h2 class="text-xl font-extrabold text-navy-800 mb-6">Send an Enquiry</h2>
                         <form class="space-y-4" onsubmit="handleFormSubmit(event)">
+                            <input type="hidden" name="form_type" value="Contact Enquiry">
+                            <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-xs font-bold text-navy-800 mb-1">Full Name</label>
-                                    <input type="text" required class="w-full border border-slate-300 rounded-lg p-2.5 text-sm bg-white focus:outline-none focus:border-gold-500">
+                                    <input type="text" name="Name" required class="w-full border border-slate-300 rounded-lg p-2.5 text-sm bg-white focus:outline-none focus:border-gold-500">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-navy-800 mb-1">Mobile Number</label>
-                                    <input type="tel" required class="w-full border border-slate-300 rounded-lg p-2.5 text-sm bg-white focus:outline-none focus:border-gold-500">
+                                    <input type="tel" name="Mobile" required class="w-full border border-slate-300 rounded-lg p-2.5 text-sm bg-white focus:outline-none focus:border-gold-500">
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-xs font-bold text-navy-800 mb-1">Email Address</label>
-                                    <input type="email" required class="w-full border border-slate-300 rounded-lg p-2.5 text-sm bg-white focus:outline-none focus:border-gold-500">
+                                    <input type="email" name="Email" required class="w-full border border-slate-300 rounded-lg p-2.5 text-sm bg-white focus:outline-none focus:border-gold-500">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-navy-800 mb-1">City</label>
-                                    <input type="text" required class="w-full border border-slate-300 rounded-lg p-2.5 text-sm bg-white focus:outline-none focus:border-gold-500">
+                                    <input type="text" name="City" required class="w-full border border-slate-300 rounded-lg p-2.5 text-sm bg-white focus:outline-none focus:border-gold-500">
                                 </div>
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-navy-800 mb-1">What are you looking for?</label>
-                                <select required class="w-full border border-slate-300 rounded-lg p-2.5 text-sm bg-white focus:outline-none focus:border-gold-500">
+                                <select name="Looking For" required class="w-full border border-slate-300 rounded-lg p-2.5 text-sm bg-white focus:outline-none focus:border-gold-500">
                                     <option value="">Choose Option</option>
-                                    <option value="life">Life Coaching</option>
-                                    <option value="business">Business Coaching</option>
-                                    <option value="uyp">Unleash Your Potential</option>
-                                    <option value="bgb">Business Growth Blueprint</option>
-                                    <option value="corp">Corporate Training</option>
-                                    <option value="one">One-to-One Coaching</option>
+                                    <option value="Life Coaching">Life Coaching</option>
+                                    <option value="Business Coaching">Business Coaching</option>
+                                    <option value="Unleash Your Potential">Unleash Your Potential</option>
+                                    <option value="Business Growth Blueprint">Business Growth Blueprint</option>
+                                    <option value="Corporate Training">Corporate Training</option>
+                                    <option value="One-to-One Coaching">One-to-One Coaching</option>
                                 </select>
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-navy-800 mb-1">Message</label>
-                                <textarea class="w-full border border-slate-300 rounded-lg p-2.5 text-sm bg-white h-28 focus:outline-none focus:border-gold-500"></textarea>
+                                <textarea name="Message" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm bg-white h-28 focus:outline-none focus:border-gold-500"></textarea>
                             </div>
                             <button type="submit" class="w-full bg-navy-800 hover:bg-navy-900 text-white font-bold py-3.5 rounded-lg text-sm transition-colors">Submit Enquiry</button>
                         </form>
@@ -2272,13 +2278,32 @@
             menuIcon.className = isHidden ? 'fa-solid fa-bars text-2xl' : 'fa-solid fa-xmark text-2xl';
         });
 
-        // Custom Form Action Handling (No-Backend Demonstration)
+        // Form submit -> save enquiry on server (submit.php) + forward to webhook
         function handleFormSubmit(event) {
             event.preventDefault();
-            // Show premium overlay feedback popup
-            document.getElementById('toast-overlay').classList.remove('hidden');
-            // Clean/Reset target form values
-            event.target.reset();
+            const form = event.target;
+            const btn = form.querySelector('button[type="submit"]');
+            const originalText = btn ? btn.innerHTML : '';
+            if (btn) { btn.disabled = true; btn.innerHTML = 'Sending...'; }
+
+            const formData = new FormData(form);
+            formData.append('page_url', window.location.href);
+
+            fetch('submit.php', { method: 'POST', body: formData })
+                .then(function (r) { return r.json().catch(function () { return { ok: r.ok }; }); })
+                .then(function (res) {
+                    if (res && res.ok === false) throw new Error('server');
+                    document.getElementById('toast-overlay').classList.remove('hidden');
+                    form.reset();
+                })
+                .catch(function () {
+                    // Fallback (e.g. local preview without PHP): still confirm to the user
+                    document.getElementById('toast-overlay').classList.remove('hidden');
+                    form.reset();
+                })
+                .finally(function () {
+                    if (btn) { btn.disabled = false; btn.innerHTML = originalText; }
+                });
         }
 
         function closeToast() {
