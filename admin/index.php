@@ -32,6 +32,21 @@ $SLOTS = [
     "blog_2"            => "Blog Cover 2",
     "blog_3"            => "Blog Cover 3",
 ];
+/* Recommended image size per slot (width x height in pixels, based on the
+   aspect ratio used on the website). Generate images at this size for best fit. */
+$SLOT_SIZES = [
+    "home_hero"         => "800 x 1000 px (4:5 portrait)",
+    "home_meet"         => "600 x 800 px (3:4 portrait)",
+    "about_portrait"    => "800 x 1000 px (4:5 portrait)",
+    "life_coaching"     => "800 x 600 px (4:3 landscape)",
+    "business_coaching" => "800 x 600 px (4:3 landscape)",
+    "uyp_workshop"      => "800 x 600 px (4:3 landscape)",
+    "bgb_poster"        => "800 x 600 px (4:3 landscape)",
+    "corporate_session" => "800 x 600 px (4:3 landscape)",
+    "blog_1"            => "1280 x 720 px (16:9 wide)",
+    "blog_2"            => "1280 x 720 px (16:9 wide)",
+    "blog_3"            => "1280 x 720 px (16:9 wide)",
+];
 $FIELDS = [
     "phone"    => "Phone Number",
     "whatsapp" => "WhatsApp Number / Link",
@@ -278,6 +293,9 @@ $content   = load_content($CONTENT);
             $cur = $content["images"][$key] ?? ""; ?>
         <div class="bg-white rounded-xl border border-slate-200 p-4 space-y-3 shadow-sm">
           <p class="text-sm font-bold text-slate-800"><?= htmlspecialchars($label) ?></p>
+          <p class="text-[11px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded px-2 py-1 inline-flex items-center gap-1">
+            <span>📐</span> Recommended size: <?= htmlspecialchars($SLOT_SIZES[$key] ?? "any") ?>
+          </p>
           <div class="aspect-video rounded-lg bg-slate-100 border border-slate-200 overflow-hidden flex items-center justify-center">
             <?php if ($cur): ?>
               <img src="../<?= htmlspecialchars($cur) ?>?v=<?= time() ?>" class="w-full h-full object-cover">

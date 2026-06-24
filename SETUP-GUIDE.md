@@ -82,9 +82,22 @@ ahi `bjs@admin123` ni jagya e tamaru navu strong password lakho ane save karo.
 
 ---
 
-## Photo slots list (admin ma j name dekhashe)
-Home Hero, Home Meet, About Portrait, Life Coaching, Business Coaching,
-Unleash Potential, Business Growth Poster, Corporate Session, Blog Cover 1/2/3.
+## Photo slots + recommended image size (pixel)
+| Slot | Size (px) | Ratio |
+|------|-----------|-------|
+| Home Hero | 800 x 1000 | 4:5 portrait |
+| Home Meet | 600 x 800 | 3:4 portrait |
+| About Portrait | 800 x 1000 | 4:5 portrait |
+| Life Coaching | 800 x 600 | 4:3 landscape |
+| Business Coaching | 800 x 600 | 4:3 landscape |
+| Unleash Potential | 800 x 600 | 4:3 landscape |
+| Business Growth Poster | 800 x 600 | 4:3 landscape |
+| Corporate Session | 800 x 600 | 4:3 landscape |
+| Blog Cover 1/2/3 | 1280 x 720 | 16:9 wide |
+
+> Exact pixel jaruri nathi — same **ratio** hoy etle barabar fit thay. Moti
+> image (e.g. 1600x2000 for 4:5) pan chale, fakt ratio same rakho. Aa size
+> admin panel ma dareke photo slot niche pan lakhel che.
 
 ---
 
