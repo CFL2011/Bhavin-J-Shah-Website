@@ -1,0 +1,40 @@
+{
+  "images": {
+    "home_hero": "",
+    "home_meet": "",
+    "about_portrait": "",
+    "life_coaching": "",
+    "business_coaching": "",
+    "uyp_workshop": "",
+    "bgb_poster": "",
+    "corporate_session": "",
+    "blog_1": "",
+    "blog_2": "",
+    "blog_3": ""
+  },
+  "fields": {
+    "phone": "",
+    "whatsapp": "",
+    "email": ""
+  },
+  "links": {
+    "social_youtube": "",
+    "social_instagram": "",
+    "social_facebook": "",
+    "social_linkedin": "",
+    "home_youtube_1": "",
+    "home_youtube_2": "",
+    "home_instagram_1": "",
+    "home_workshop_video": "",
+    "home_testi_1": "",
+    "home_testi_2": "",
+    "home_testi_3": ""
+  },
+  "texts": {
+    "hero_subtext": "",
+    "footer_about": ""
+  },
+  "maps": {
+    "google_map": ""
+  }
+}
