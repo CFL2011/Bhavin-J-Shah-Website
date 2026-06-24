@@ -10,7 +10,19 @@
     "corporate_session": "",
     "blog_1": "",
     "blog_2": "",
-    "blog_3": ""
+    "blog_3": "",
+    "uyp_gallery_1": "",
+    "uyp_gallery_2": "",
+    "uyp_gallery_3": "",
+    "uyp_gallery_4": "",
+    "uyp_group_photo": "",
+    "uyp_activity_photo": "",
+    "uyp_coach_profile": "",
+    "uyp_coach_speaking": "",
+    "uyp_testi_shot_1": "",
+    "uyp_testi_shot_2": "",
+    "uyp_review_shot": "",
+    "uyp_written_review": ""
   },
   "fields": {
     "phone": "",
@@ -28,11 +40,28 @@
     "home_workshop_video": "",
     "home_testi_1": "",
     "home_testi_2": "",
-    "home_testi_3": ""
+    "home_testi_3": "",
+    "uyp_schedule_link": "",
+    "uyp_highlight_video": "",
+    "uyp_coach_video": "",
+    "uyp_testi_video_1": "",
+    "uyp_testi_video_2": "",
+    "uyp_testi_video_3": "",
+    "uyp_sharing_1": "",
+    "uyp_sharing_2": "",
+    "uyp_sharing_3": "",
+    "uyp_review_video": ""
   },
   "texts": {
     "hero_subtext": "",
-    "footer_about": ""
+    "footer_about": "",
+    "uyp_batch_date": "",
+    "uyp_total_sessions": "",
+    "uyp_investment": "",
+    "uyp_stat_lives": "",
+    "uyp_stat_stories": "",
+    "uyp_stat_years": "",
+    "uyp_stat_reach": ""
   },
   "maps": {
     "google_map": ""
