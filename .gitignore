@@ -1,1 +1,9 @@
 .claude/
+
+# Live data — managed on the server, never overwrite on deploy
+content.json
+data/enquiries.json
+data/settings.json
+uploads/*
+!uploads/.gitkeep
+!uploads/index.html
