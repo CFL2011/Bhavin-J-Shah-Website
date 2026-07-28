@@ -944,9 +944,10 @@
       });
     });
 
+    const hasContentValue = (value) => typeof value === 'string' && value.trim() !== '';
     const setText = (selector, value) => {
       const element = document.querySelector(selector);
-      if (element && value !== undefined) element.textContent = value;
+      if (element && hasContentValue(value)) element.textContent = value;
     };
 
     async function loadWebsiteContent() {
@@ -963,12 +964,16 @@
         });
 
         const heroHeading = document.querySelector('#home h1');
-        if (heroHeading) heroHeading.innerHTML = `${texts.hero_heading || ''} <span>${texts.hero_accent || ''}</span>`;
+        if (heroHeading && hasContentValue(texts.hero_heading) && hasContentValue(texts.hero_accent)) {
+          heroHeading.innerHTML = `${texts.hero_heading} <span>${texts.hero_accent}</span>`;
+        }
         setText('#home .hero-copy', texts.hero_intro);
         setText('#home .hero-actions a:nth-child(1)', texts.hero_primary_button);
         setText('#home .hero-actions a:nth-child(2)', texts.hero_secondary_button);
         const mission = document.querySelector('#home .mission');
-        if (mission) mission.innerHTML = `<strong>${texts.hero_mission_heading || ''}</strong>${texts.hero_mission_text || ''}`;
+        if (mission && hasContentValue(texts.hero_mission_heading) && hasContentValue(texts.hero_mission_text)) {
+          mission.innerHTML = `<strong>${texts.hero_mission_heading}</strong>${texts.hero_mission_text}`;
+        }
         setText('#home .hero-note', texts.hero_quote);
 
         const stats = document.querySelectorAll('.stats .stat');
@@ -987,7 +992,7 @@
         setText('#about h2', texts.about_heading);
         const aboutParagraphs = document.querySelectorAll('#about .story p');
         [texts.about_intro, texts.about_body_1, texts.about_body_2].forEach((value, index) => {
-          if (aboutParagraphs[index] && value !== undefined) aboutParagraphs[index].textContent = value;
+          if (aboutParagraphs[index] && hasContentValue(value)) aboutParagraphs[index].textContent = value;
         });
         setText('#about .quote-panel', texts.about_callout);
         setText('#programs h2', texts.programs_heading);
@@ -1000,7 +1005,7 @@
         setText('#coach-for-life h2', texts.coach_heading);
         const coachParagraphs = document.querySelectorAll('#coach-for-life .story p');
         [texts.coach_body_1, texts.coach_body_2, texts.coach_body_3].forEach((value, index) => {
-          if (coachParagraphs[index] && value !== undefined) coachParagraphs[index].textContent = value;
+          if (coachParagraphs[index] && hasContentValue(value)) coachParagraphs[index].textContent = value;
         });
         setText('#contact .contact-card h3', texts.contact_heading);
         setText('#contact .contact-card > p', texts.contact_intro);
@@ -1009,9 +1014,9 @@
         setText('footer .footer-row > div:nth-child(2)', texts.footer_about);
 
         const contactRows = document.querySelectorAll('#contact .contact-list > div');
-        if (contactRows[0]) contactRows[0].textContent = `Phone: ${fields.phone || ''}`;
-        if (contactRows[1]) contactRows[1].textContent = `Location: ${fields.location || ''}`;
-        if (contactRows[2]) contactRows[2].textContent = `Focus: ${fields.focus || ''}`;
+        if (contactRows[0] && hasContentValue(fields.phone)) contactRows[0].textContent = `Phone: ${fields.phone}`;
+        if (contactRows[1] && hasContentValue(fields.location)) contactRows[1].textContent = `Location: ${fields.location}`;
+        if (contactRows[2] && hasContentValue(fields.focus)) contactRows[2].textContent = `Focus: ${fields.focus}`;
 
         const imageMap = {
           hero_portrait: '#home .hero-card img',
