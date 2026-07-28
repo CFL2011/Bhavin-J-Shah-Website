@@ -12,6 +12,7 @@ $ADMIN_PASSWORD = "bjs@admin123";   // <-- IMPORTANT: change this password
 
 $ROOT        = dirname(__DIR__);                 // website root folder
 $CONTENT     = $ROOT . "/content.json";
+$DEFAULT_CONTENT = $ROOT . "/content.example.json";
 $UPLOAD_DIR  = $ROOT . "/uploads";
 $UPLOAD_URL  = "uploads";                         // path used inside the website
 $DATA_DIR    = $ROOT . "/data";
@@ -45,8 +46,6 @@ $FIELDS = [
     "phone" => "Phone Number",
     "location" => "Full Office Address",
     "focus" => "Focus / Services",
-    "whatsapp" => "WhatsApp Number / Link",
-    "email" => "Email Address",
 ];
 $TEXTS = [
     "hero_heading" => "Hero – Heading",
@@ -108,6 +107,17 @@ function load_content($file) {
     }
     return $d;
 }
+function merge_content_defaults($content, $defaults) {
+    foreach ($defaults as $key => $defaultValue) {
+        if (is_array($defaultValue)) {
+            $currentValue = (isset($content[$key]) && is_array($content[$key])) ? $content[$key] : [];
+            $content[$key] = merge_content_defaults($currentValue, $defaultValue);
+        } elseif (!isset($content[$key]) || (is_string($content[$key]) && trim($content[$key]) === "")) {
+            $content[$key] = $defaultValue;
+        }
+    }
+    return $content;
+}
 function save_content($file, $data) {
     file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), LOCK_EX);
 }
@@ -132,7 +142,7 @@ $logged_in = !empty($_SESSION["bjs_admin"]);
 /* ---------- 4. HANDLE SAVE (only when logged in) ---------- */
 $notice = "";
 if ($logged_in && $_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
-    $content = load_content($CONTENT);
+    $content = merge_content_defaults(load_content($CONTENT), load_content($DEFAULT_CONTENT));
 
     /* a) Photo upload for a slot */
     if ($_POST["action"] === "upload" && isset($_POST["slot"])) {
@@ -280,7 +290,7 @@ if ($logged_in) {
 
 $enquiries = array_reverse(load_json_array($ENQ_FILE));   // newest first
 $settings  = load_json_array($SET_FILE);
-$content   = load_content($CONTENT);
+$content   = merge_content_defaults(load_content($CONTENT), load_content($DEFAULT_CONTENT));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -351,7 +361,7 @@ $content   = load_content($CONTENT);
             <?php if ($cur): ?>
               <img src="../<?= htmlspecialchars($cur) ?>?v=<?= time() ?>" class="w-full h-full object-cover">
             <?php else: ?>
-              <span class="text-xs text-slate-400">No photo yet</span>
+              <span class="text-xs text-slate-500 text-center px-3">Current frontend image is active.<br>Upload only to replace it.</span>
             <?php endif; ?>
           </div>
           <form method="post" enctype="multipart/form-data" class="space-y-2">
@@ -380,7 +390,7 @@ $content   = load_content($CONTENT);
   <!-- CONTACT -->
   <section>
     <h2 class="text-lg font-extrabold text-slate-900 mb-1">Contact Details</h2>
-    <p class="text-sm text-slate-500 mb-5">Website par dekhata phone, full address, services, WhatsApp ane email ahi badlo.</p>
+    <p class="text-sm text-slate-500 mb-5">Website contact section ma dekhata phone, full address ane services ahi badlo.</p>
     <form method="post" class="bg-white rounded-xl border border-slate-200 p-5 space-y-4 shadow-sm max-w-xl">
       <input type="hidden" name="action" value="fields">
       <?php foreach ($FIELDS as $k => $label):
@@ -400,7 +410,7 @@ $content   = load_content($CONTENT);
   <!-- TEXT BLOCKS -->
   <section>
     <h2 class="text-lg font-extrabold text-slate-900 mb-1">Website Texts</h2>
-    <p class="text-sm text-slate-500 mb-5">Aa text website par dekhati lakhan badle che. Khali rakho to default rahe.</p>
+    <p class="text-sm text-slate-500 mb-5">Darek field ma current frontend text pehle thi bharayelu che. Label batave che ke website no kayo part change thashe.</p>
     <form method="post" class="bg-white rounded-xl border border-slate-200 p-5 space-y-4 shadow-sm max-w-3xl">
       <input type="hidden" name="action" value="texts">
       <?php foreach ($TEXTS as $k => $label):
