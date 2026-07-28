@@ -1,14 +1,14 @@
 {
   "images": {
-    "hero_portrait": "",
-    "about_portrait": "",
-    "video_cover": "",
-    "coach_portrait": "",
-    "program_1": "",
-    "program_2": "",
-    "program_3": "",
-    "program_4": "",
-    "program_5": ""
+    "hero_portrait": "assets/admin-defaults/hero_portrait.jpg",
+    "about_portrait": "assets/admin-defaults/about_portrait.jpg",
+    "video_cover": "assets/admin-defaults/video_cover.jpg",
+    "coach_portrait": "assets/admin-defaults/coach_portrait.jpg",
+    "program_1": "assets/admin-defaults/program_1.webp",
+    "program_2": "assets/admin-defaults/program_2.webp",
+    "program_3": "assets/admin-defaults/program_3.webp",
+    "program_4": "assets/admin-defaults/program_4.webp",
+    "program_5": "assets/admin-defaults/program_5.webp"
   },
   "fields": {
     "phone": "+91 8153 8401 70",
