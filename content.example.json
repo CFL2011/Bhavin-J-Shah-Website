@@ -41,7 +41,9 @@
     "programs_heading": "Programs Designed for Real Transformation",
     "programs_intro": "Five clear paths for business and personal growth—choose a live session, an immersive workshop or learn at your own pace.",
     "social_heading": "Follow the Journey. Fuel Your Growth.",
-    "social_intro": "Daily insights, powerful conversations and practical lessons—choose your platform and stay connected.",
+    "social_intro": "Connect with Bhavin J. Shah for daily insights, powerful conversations and practical lessons across your favourite platform.",
+    "social_total": "506K+",
+    "social_total_label": "Total Social Media Community",
     "reviews_heading": "Unveiling Reviews, Sharing Joy!",
     "reviews_intro": "Real voices, real experiences. Dive into testimonials for quick inspiration.",
     "coach_heading": "About Coach For Life",
@@ -62,9 +64,9 @@
     {"type":"Pre-Recorded Course","name":"Be Productive Not Busy!","description":"Build better priorities, eliminate unproductive busyness and focus your time on actions that create meaningful results.","link":"#contact"}
   ],
   "socials": [
-    {"platform":"Instagram","action":"Follow","count":"13.7K","metric":"Followers","handle":"@coachforlifein","cta":"Explore Instagram","url":"https://www.instagram.com/coachforlifein/"},
-    {"platform":"YouTube","action":"Subscribe","count":"100K+","metric":"Subscribers","handle":"Coach For Life","cta":"Watch on YouTube","url":"https://www.youtube.com/channel/UCSgxujWKHvw7_t2r2smJpZg"},
-    {"platform":"Facebook","action":"Connect","count":"18K","metric":"Followers","handle":"Coach For Life","cta":"Join on Facebook","url":"https://www.facebook.com/coachforlifeindia/"}
+    {"platform":"Instagram","action":"Follow","count":"361K","metric":"Followers","handle":"@bhavin_j_shah","cta":"Explore Instagram","url":"https://www.instagram.com/bhavin_j_shah?igsh=Y2J5NGJuMTRrMXoy"},
+    {"platform":"YouTube","action":"Subscribe","count":"52.2K","metric":"Subscribers","handle":"@BhavinJShah_","cta":"Watch on YouTube","url":"https://youtube.com/@bhavinjshah_?si=_aDPAlQ_9lvH8u0g"},
+    {"platform":"Facebook","action":"Connect","count":"93K","metric":"Followers","handle":"Bhavin J. Shah","cta":"Join on Facebook","url":"https://www.facebook.com/share/1ArQ1bSKoV/"}
   ],
   "testimonials": [
     {"quote":"Just completed a workshop named Unleash Your Hidden Potential. It was an amazing workshop. It gave me a new vision for my professional and personal life.","name":"Abhijit Chhajed"},
