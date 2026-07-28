@@ -2,7 +2,6 @@
   "images": {
     "hero_portrait": "assets/admin-defaults/hero_portrait.jpg",
     "about_portrait": "assets/admin-defaults/about_portrait.jpg",
-    "video_cover": "assets/admin-defaults/video_cover.jpg",
     "coach_portrait": "assets/admin-defaults/coach_portrait.jpg",
     "program_1": "assets/admin-defaults/program_1.webp",
     "program_2": "assets/admin-defaults/program_2.webp",
@@ -41,9 +40,8 @@
     "about_callout": "Start Small but Start.",
     "programs_heading": "Programs Designed for Real Transformation",
     "programs_intro": "Five clear paths for business and personal growth—choose a live session, an immersive workshop or learn at your own pace.",
-    "videos_heading": "Watch. Listen. Learn. Act.",
-    "videos_intro": "Explore, get inspired and grow. My video lessons await your click.",
-    "videos_button": "Ask for Video Lessons",
+    "social_heading": "Follow the Journey. Fuel Your Growth.",
+    "social_intro": "Daily insights, powerful conversations and practical lessons—choose your platform and stay connected.",
     "reviews_heading": "Unveiling Reviews, Sharing Joy!",
     "reviews_intro": "Real voices, real experiences. Dive into testimonials for quick inspiration.",
     "coach_heading": "About Coach For Life",
@@ -62,6 +60,11 @@
     {"type":"Pre-Recorded Course","name":"Business Energy Formula","description":"Learn practical principles to improve business energy, align your team and build sustainable momentum at your own pace.","link":"#contact"},
     {"type":"Pre-Recorded Course","name":"Get Set Go!","description":"A practical step-by-step course to move from planning to action with greater clarity, confidence and consistency.","link":"#contact"},
     {"type":"Pre-Recorded Course","name":"Be Productive Not Busy!","description":"Build better priorities, eliminate unproductive busyness and focus your time on actions that create meaningful results.","link":"#contact"}
+  ],
+  "socials": [
+    {"platform":"Instagram","action":"Follow","count":"13.7K","metric":"Followers","handle":"@coachforlifein","cta":"Explore Instagram","url":"https://www.instagram.com/coachforlifein/"},
+    {"platform":"YouTube","action":"Subscribe","count":"100K+","metric":"Subscribers","handle":"Coach For Life","cta":"Watch on YouTube","url":"https://www.youtube.com/channel/UCSgxujWKHvw7_t2r2smJpZg"},
+    {"platform":"Facebook","action":"Connect","count":"18K","metric":"Followers","handle":"Coach For Life","cta":"Join on Facebook","url":"https://www.facebook.com/coachforlifeindia/"}
   ],
   "testimonials": [
     {"quote":"Just completed a workshop named Unleash Your Hidden Potential. It was an amazing workshop. It gave me a new vision for my professional and personal life.","name":"Abhijit Chhajed"},

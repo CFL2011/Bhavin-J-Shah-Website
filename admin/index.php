@@ -23,7 +23,6 @@ $SET_FILE    = $DATA_DIR . "/settings.json";
 $SLOTS = [
     "hero_portrait"  => "Home – Hero Portrait",
     "about_portrait" => "About Bhavin – Portrait",
-    "video_cover"    => "Videos – Cover Image",
     "coach_portrait" => "About Coach For Life – Portrait",
     "program_1"      => "Program 1 – Business Growth Blueprint",
     "program_2"      => "Program 2 – Unleash Your Potential",
@@ -34,7 +33,6 @@ $SLOTS = [
 $SLOT_SIZES = [
     "hero_portrait" => "800 x 1000 px (4:5 portrait)",
     "about_portrait" => "800 x 1000 px (4:5 portrait)",
-    "video_cover" => "1280 x 720 px (16:9 landscape)",
     "coach_portrait" => "800 x 1000 px (4:5 portrait)",
     "program_1" => "1200 x 675 px (16:9 landscape)",
     "program_2" => "1200 x 675 px (16:9 landscape)",
@@ -71,9 +69,8 @@ $TEXTS = [
     "about_callout" => "About Bhavin – Callout",
     "programs_heading" => "Programs – Heading",
     "programs_intro" => "Programs – Intro",
-    "videos_heading" => "Videos – Heading",
-    "videos_intro" => "Videos – Intro",
-    "videos_button" => "Videos – Button",
+    "social_heading" => "Social Media – Heading",
+    "social_intro" => "Social Media – Intro",
     "reviews_heading" => "Success Stories – Heading",
     "reviews_intro" => "Success Stories – Intro",
     "coach_heading" => "Coach For Life – Heading",
@@ -99,10 +96,10 @@ $COLORS = [
 ];
 /* ---------- 2. HELPERS ---------- */
 function load_content($file) {
-    if (!file_exists($file)) return ["images" => [], "fields" => [], "texts" => [], "colors" => [], "programs" => [], "testimonials" => []];
+    if (!file_exists($file)) return ["images" => [], "fields" => [], "texts" => [], "colors" => [], "programs" => [], "socials" => [], "testimonials" => []];
     $d = json_decode(file_get_contents($file), true);
     if (!is_array($d)) $d = [];
-    foreach (["images", "fields", "texts", "colors", "programs", "testimonials"] as $sec) {
+    foreach (["images", "fields", "texts", "colors", "programs", "socials", "testimonials"] as $sec) {
         if (!isset($d[$sec]) || !is_array($d[$sec])) $d[$sec] = [];
     }
     return $d;
@@ -212,6 +209,24 @@ if ($logged_in && $_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"
         $content["programs"] = $programs;
         save_content($CONTENT, $content);
         $notice = "Programs saved";
+    }
+
+    if ($_POST["action"] === "socials") {
+        $socials = [];
+        for ($i = 0; $i < 3; $i++) {
+            $socials[] = [
+                "platform" => trim($_POST["social_platform_$i"] ?? ""),
+                "action" => trim($_POST["social_action_$i"] ?? ""),
+                "count" => trim($_POST["social_count_$i"] ?? ""),
+                "metric" => trim($_POST["social_metric_$i"] ?? ""),
+                "handle" => trim($_POST["social_handle_$i"] ?? ""),
+                "cta" => trim($_POST["social_cta_$i"] ?? ""),
+                "url" => trim($_POST["social_url_$i"] ?? ""),
+            ];
+        }
+        $content["socials"] = $socials;
+        save_content($CONTENT, $content);
+        $notice = "Social media cards saved";
     }
 
     if ($_POST["action"] === "testimonials") {
@@ -444,6 +459,27 @@ $content   = merge_content_defaults(load_content($CONTENT), load_content($DEFAUL
       </div>
       <?php endfor; ?>
       <button class="bg-slate-900 text-white font-bold px-6 py-2.5 rounded-lg">Save Programs</button>
+    </form>
+  </section>
+
+  <!-- SOCIAL MEDIA -->
+  <section>
+    <h2 class="text-lg font-extrabold text-slate-900 mb-1">Social Media Cards</h2>
+    <p class="text-sm text-slate-500 mb-5">Instagram, YouTube ane Facebook na follower count, handle, button text ane profile link ahi update karo.</p>
+    <form method="post" class="space-y-4">
+      <input type="hidden" name="action" value="socials">
+      <?php for ($i = 0; $i < 3; $i++): $social = $content["socials"][$i] ?? []; ?>
+      <div class="bg-white rounded-xl border border-slate-200 p-5 grid grid-cols-1 md:grid-cols-2 gap-4 shadow-sm">
+        <div><label class="text-sm font-semibold block mb-1">Platform</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2.5" name="social_platform_<?= $i ?>" value="<?= htmlspecialchars($social["platform"] ?? "") ?>"></div>
+        <div><label class="text-sm font-semibold block mb-1">Top Badge</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2.5" name="social_action_<?= $i ?>" value="<?= htmlspecialchars($social["action"] ?? "") ?>" placeholder="Follow, Subscribe or Connect"></div>
+        <div><label class="text-sm font-semibold block mb-1">Follower / Subscriber Count</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2.5" name="social_count_<?= $i ?>" value="<?= htmlspecialchars($social["count"] ?? "") ?>"></div>
+        <div><label class="text-sm font-semibold block mb-1">Count Label</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2.5" name="social_metric_<?= $i ?>" value="<?= htmlspecialchars($social["metric"] ?? "") ?>" placeholder="Followers or Subscribers"></div>
+        <div><label class="text-sm font-semibold block mb-1">Handle / Channel Name</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2.5" name="social_handle_<?= $i ?>" value="<?= htmlspecialchars($social["handle"] ?? "") ?>"></div>
+        <div><label class="text-sm font-semibold block mb-1">Button Text</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2.5" name="social_cta_<?= $i ?>" value="<?= htmlspecialchars($social["cta"] ?? "") ?>"></div>
+        <div><label class="text-sm font-semibold block mb-1">Profile / Channel Link</label><input type="url" class="w-full border border-slate-300 rounded-lg px-3 py-2.5" name="social_url_<?= $i ?>" value="<?= htmlspecialchars($social["url"] ?? "") ?>"></div>
+      </div>
+      <?php endfor; ?>
+      <button class="bg-slate-900 text-white font-bold px-6 py-2.5 rounded-lg">Save Social Media</button>
     </form>
   </section>
 
