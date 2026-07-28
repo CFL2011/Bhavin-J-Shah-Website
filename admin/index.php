@@ -43,9 +43,9 @@ $SLOT_SIZES = [
     "program_5" => "1200 x 675 px (16:9 landscape)",
 ];
 $FIELDS = [
-    "phone" => "Phone Number",
+    "phone" => "Contact Number",
+    "email" => "Email Address",
     "location" => "Full Office Address",
-    "focus" => "Focus / Services",
 ];
 $TEXTS = [
     "hero_heading" => "Hero – Heading",
@@ -206,6 +206,7 @@ if ($logged_in && $_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"
                 "type" => trim($_POST["program_type_$i"] ?? ""),
                 "name" => trim($_POST["program_name_$i"] ?? ""),
                 "description" => trim($_POST["program_description_$i"] ?? ""),
+                "link" => trim($_POST["program_link_$i"] ?? "#contact"),
             ];
         }
         $content["programs"] = $programs;
@@ -390,7 +391,7 @@ $content   = merge_content_defaults(load_content($CONTENT), load_content($DEFAUL
   <!-- CONTACT -->
   <section>
     <h2 class="text-lg font-extrabold text-slate-900 mb-1">Contact Details</h2>
-    <p class="text-sm text-slate-500 mb-5">Website contact section ma dekhata phone, full address ane services ahi badlo.</p>
+    <p class="text-sm text-slate-500 mb-5">Website contact section ma dekhata contact number, email ane full address ahi badlo.</p>
     <form method="post" class="bg-white rounded-xl border border-slate-200 p-5 space-y-4 shadow-sm max-w-xl">
       <input type="hidden" name="action" value="fields">
       <?php foreach ($FIELDS as $k => $label):
@@ -439,6 +440,7 @@ $content   = merge_content_defaults(load_content($CONTENT), load_content($DEFAUL
         <div><label class="text-sm font-semibold block mb-1">Program <?= $i + 1 ?> – Name</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2.5" name="program_name_<?= $i ?>" value="<?= htmlspecialchars($program["name"] ?? "") ?>"></div>
         <div><label class="text-sm font-semibold block mb-1">Type</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2.5" name="program_type_<?= $i ?>" value="<?= htmlspecialchars($program["type"] ?? "") ?>"></div>
         <div class="md:col-span-2"><label class="text-sm font-semibold block mb-1">Description</label><textarea rows="2" class="w-full border border-slate-300 rounded-lg px-3 py-2.5" name="program_description_<?= $i ?>"><?= htmlspecialchars($program["description"] ?? "") ?></textarea></div>
+        <div class="md:col-span-2"><label class="text-sm font-semibold block mb-1">Inquire Now Button Link</label><input type="text" class="w-full border border-slate-300 rounded-lg px-3 py-2.5" name="program_link_<?= $i ?>" value="<?= htmlspecialchars($program["link"] ?? "#contact") ?>" placeholder="https://example.com/landing-page"><p class="text-xs text-slate-500 mt-1">Landing page, payment page, WhatsApp URL or #contact link paste karo.</p></div>
       </div>
       <?php endfor; ?>
       <button class="bg-slate-900 text-white font-bold px-6 py-2.5 rounded-lg">Save Programs</button>

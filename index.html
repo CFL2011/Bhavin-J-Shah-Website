@@ -372,6 +372,10 @@
       aspect-ratio: 16 / 10;
       object-fit: cover;
     }
+    .program {
+      display: flex;
+      flex-direction: column;
+    }
     .program-body,
     .blog-body { padding: 24px; }
     .price {
@@ -389,7 +393,10 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      flex: 1;
     }
+    .program-body > p { margin-bottom: 20px; }
+    .program-cta { margin-top: auto; }
     .program-type {
       color: var(--navy);
       background: #fff8dc;
@@ -840,9 +847,9 @@
           <h3>Contact Coach For Life</h3>
           <p>Ready to upgrade your success? Share your details and the team can help you choose the right next step.</p>
           <div class="contact-list">
-            <div>Phone: +91 8153 8401 70</div>
-            <div>Location: Coach For Life, D-107, 2nd Floor, SNS Interio, Nr. Bhatar Cross Roads, next to CNG Pump, Bhatar, Athwa, Surat, Gujarat 395017</div>
-            <div>Focus: Life Coaching, Business Coaching, Workshops</div>
+            <div>Contact Number: +91 8153 8401 70</div>
+            <div>Email: info@coachforlife.in</div>
+            <div>Address: Coach For Life, D-107, 2nd Floor, SNS Interio, Nr. Bhatar Cross Roads, next to CNG Pump, Bhatar, Athwa, Surat, Gujarat 395017</div>
           </div>
         </div>
         <form class="contact-form" id="enquiryForm" action="submit.php" method="post">
@@ -911,13 +918,20 @@
     ];
 
     const programGrid = document.querySelector('#programs .program-grid');
+    const safeProgramLink = (value) => {
+      const link = typeof value === 'string' ? value.trim() : '';
+      return /^(https?:\/\/|\/|\.\/|\.\.\/|#|mailto:|tel:)/i.test(link) ? link : '#contact';
+    };
+    const programLinkAttributes = (link) => /^https?:\/\//i.test(link) ? ' target="_blank" rel="noopener noreferrer"' : '';
     programGrid.innerHTML = programs.map((program) => {
+      const link = safeProgramLink(program.link);
       return `<article class="program">
         <img src="${program.image}" alt="${program.name} program visual" />
         <div class="program-body">
           <span class="program-type">${program.type}</span>
           <h3>${program.name}</h3>
           <p>${program.description}</p>
+          <a class="btn btn-gold program-cta" href="${link}"${programLinkAttributes(link)}>Inquire Now</a>
         </div>
       </article>`;
     }).join('');
@@ -1014,9 +1028,9 @@
         setText('footer .footer-row > div:nth-child(2)', texts.footer_about);
 
         const contactRows = document.querySelectorAll('#contact .contact-list > div');
-        if (contactRows[0] && hasContentValue(fields.phone)) contactRows[0].textContent = `Phone: ${fields.phone}`;
-        if (contactRows[1] && hasContentValue(fields.location)) contactRows[1].textContent = `Location: ${fields.location}`;
-        if (contactRows[2] && hasContentValue(fields.focus)) contactRows[2].textContent = `Focus: ${fields.focus}`;
+        if (contactRows[0] && hasContentValue(fields.phone)) contactRows[0].textContent = `Contact Number: ${fields.phone}`;
+        if (contactRows[1] && hasContentValue(fields.email)) contactRows[1].textContent = `Email: ${fields.email}`;
+        if (contactRows[2] && hasContentValue(fields.location)) contactRows[2].textContent = `Address: ${fields.location}`;
 
         const imageMap = {
           hero_portrait: '#home .hero-card img',
@@ -1034,7 +1048,8 @@
           programGrid.innerHTML = content.programs.map((program, index) => {
             const configuredImage = images[`program_${index + 1}`];
             const image = configuredImage || currentImages[index] || '';
-            return `<article class="program"><img src="${image}" alt="${program.name} program visual" /><div class="program-body"><span class="program-type">${program.type}</span><h3>${program.name}</h3><p>${program.description}</p></div></article>`;
+            const link = safeProgramLink(program.link);
+            return `<article class="program"><img src="${image}" alt="${program.name} program visual" /><div class="program-body"><span class="program-type">${program.type}</span><h3>${program.name}</h3><p>${program.description}</p><a class="btn btn-gold program-cta" href="${link}"${programLinkAttributes(link)}>Inquire Now</a></div></article>`;
           }).join('');
           interestSelect.innerHTML = [...content.programs.map((program) => `<option>${program.name}</option>`), '<option>One-to-One Coaching</option>'].join('');
         }

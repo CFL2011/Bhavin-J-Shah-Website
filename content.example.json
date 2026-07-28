@@ -15,7 +15,7 @@
     "location": "Coach For Life, D-107, 2nd Floor, SNS Interio, Nr. Bhatar Cross Roads, next to CNG Pump, Bhatar, Athwa, Surat, Gujarat 395017",
     "focus": "Life Coaching, Business Coaching, Workshops",
     "whatsapp": "",
-    "email": ""
+    "email": "info@coachforlife.in"
   },
   "texts": {
     "hero_heading": "Take your business to",
@@ -57,11 +57,11 @@
     "footer_about": "Coach For Life helps people and business owners grow with clarity, confidence and meaningful action."
   },
   "programs": [
-    {"type":"Free Offline Session","name":"Business Growth Blueprint","description":"A focused live session for business owners to identify growth opportunities, gain clarity and create an actionable blueprint."},
-    {"type":"Paid Workshop · 5–6 Months","name":"Unleash Your Potential","description":"An intensive transformational journey designed to unlock potential, strengthen mindset and create lasting personal and professional growth."},
-    {"type":"Pre-Recorded Course","name":"Business Energy Formula","description":"Learn practical principles to improve business energy, align your team and build sustainable momentum at your own pace."},
-    {"type":"Pre-Recorded Course","name":"Get Set Go!","description":"A practical step-by-step course to move from planning to action with greater clarity, confidence and consistency."},
-    {"type":"Pre-Recorded Course","name":"Be Productive Not Busy!","description":"Build better priorities, eliminate unproductive busyness and focus your time on actions that create meaningful results."}
+    {"type":"Free Offline Session","name":"Business Growth Blueprint","description":"A focused live session for business owners to identify growth opportunities, gain clarity and create an actionable blueprint.","link":"#contact"},
+    {"type":"Paid Workshop · 5–6 Months","name":"Unleash Your Potential","description":"An intensive transformational journey designed to unlock potential, strengthen mindset and create lasting personal and professional growth.","link":"#contact"},
+    {"type":"Pre-Recorded Course","name":"Business Energy Formula","description":"Learn practical principles to improve business energy, align your team and build sustainable momentum at your own pace.","link":"#contact"},
+    {"type":"Pre-Recorded Course","name":"Get Set Go!","description":"A practical step-by-step course to move from planning to action with greater clarity, confidence and consistency.","link":"#contact"},
+    {"type":"Pre-Recorded Course","name":"Be Productive Not Busy!","description":"Build better priorities, eliminate unproductive busyness and focus your time on actions that create meaningful results.","link":"#contact"}
   ],
   "testimonials": [
     {"quote":"Just completed a workshop named Unleash Your Hidden Potential. It was an amazing workshop. It gave me a new vision for my professional and personal life.","name":"Abhijit Chhajed"},
