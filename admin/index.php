@@ -20,115 +20,96 @@ $SET_FILE    = $DATA_DIR . "/settings.json";
 
 /* Image slots shown in the panel (key => friendly label) */
 $SLOTS = [
-    "home_hero"         => "Home – Hero / Main Photo",
-    "home_meet"         => "Home – Meet Bhavin Photo",
-    "about_portrait"    => "About Page – Portrait",
-    "life_coaching"     => "Life Coaching – Photo",
-    "business_coaching" => "Business Coaching – Photo",
-    "uyp_workshop"      => "Unleash Potential – Workshop Photo",
-    "bgb_poster"        => "Business Growth – Poster Photo",
-    "corporate_session" => "Corporate Training – Session Photo",
-    "blog_1"            => "Blog Cover 1",
-    "blog_2"            => "Blog Cover 2",
-    "blog_3"            => "Blog Cover 3",
-    "uyp_gallery_1"     => "UYP – Past Batch Gallery Image 1",
-    "uyp_gallery_2"     => "UYP – Past Batch Gallery Image 2",
-    "uyp_gallery_3"     => "UYP – Past Batch Gallery Image 3",
-    "uyp_gallery_4"     => "UYP – Past Batch Gallery Image 4",
-    "uyp_group_photo"   => "UYP – Workshop Group Photo",
-    "uyp_activity_photo"=> "UYP – Workshop Activity Photo",
-    "uyp_coach_profile" => "UYP – Bhavin J. Shah Profile Image",
-    "uyp_coach_speaking"=> "UYP – Bhavin J. Shah Speaking Image",
-    "uyp_testi_shot_1"  => "UYP – Testimonial Screenshot 1",
-    "uyp_testi_shot_2"  => "UYP – Testimonial Screenshot 2",
-    "uyp_review_shot"   => "UYP – Review Screenshot",
-    "uyp_written_review"=> "UYP – Written Testimonial Image",
+    "hero_portrait"  => "Home – Hero Portrait",
+    "about_portrait" => "About Bhavin – Portrait",
+    "video_cover"    => "Videos – Cover Image",
+    "coach_portrait" => "About Coach For Life – Portrait",
+    "program_1"      => "Program 1 – Business Growth Blueprint",
+    "program_2"      => "Program 2 – Unleash Your Potential",
+    "program_3"      => "Program 3 – Business Energy Formula",
+    "program_4"      => "Program 4 – Get Set Go!",
+    "program_5"      => "Program 5 – Be Productive Not Busy!",
 ];
-/* Recommended image size per slot (width x height in pixels, based on the
-   aspect ratio used on the website). Generate images at this size for best fit. */
 $SLOT_SIZES = [
-    "home_hero"         => "800 x 1000 px (4:5 portrait)",
-    "home_meet"         => "600 x 800 px (3:4 portrait)",
-    "about_portrait"    => "800 x 1000 px (4:5 portrait)",
-    "life_coaching"     => "800 x 600 px (4:3 landscape)",
-    "business_coaching" => "800 x 600 px (4:3 landscape)",
-    "uyp_workshop"      => "800 x 600 px (4:3 landscape)",
-    "bgb_poster"        => "800 x 600 px (4:3 landscape)",
-    "corporate_session" => "800 x 600 px (4:3 landscape)",
-    "blog_1"            => "1280 x 720 px (16:9 wide)",
-    "blog_2"            => "1280 x 720 px (16:9 wide)",
-    "blog_3"            => "1280 x 720 px (16:9 wide)",
-    "uyp_gallery_1"     => "800 x 600 px (4:3 landscape)",
-    "uyp_gallery_2"     => "800 x 600 px (4:3 landscape)",
-    "uyp_gallery_3"     => "800 x 600 px (4:3 landscape)",
-    "uyp_gallery_4"     => "800 x 600 px (4:3 landscape)",
-    "uyp_group_photo"   => "800 x 600 px (4:3 landscape)",
-    "uyp_activity_photo"=> "800 x 600 px (4:3 landscape)",
-    "uyp_coach_profile" => "800 x 1000 px (4:5 portrait)",
-    "uyp_coach_speaking"=> "800 x 600 px (4:3 landscape)",
-    "uyp_testi_shot_1"  => "800 x 600 px (4:3 landscape)",
-    "uyp_testi_shot_2"  => "800 x 600 px (4:3 landscape)",
-    "uyp_review_shot"   => "800 x 600 px (4:3 landscape)",
-    "uyp_written_review"=> "800 x 600 px (4:3 landscape)",
+    "hero_portrait" => "800 x 1000 px (4:5 portrait)",
+    "about_portrait" => "800 x 1000 px (4:5 portrait)",
+    "video_cover" => "1280 x 720 px (16:9 landscape)",
+    "coach_portrait" => "800 x 1000 px (4:5 portrait)",
+    "program_1" => "1200 x 675 px (16:9 landscape)",
+    "program_2" => "1200 x 675 px (16:9 landscape)",
+    "program_3" => "1200 x 675 px (16:9 landscape)",
+    "program_4" => "1200 x 675 px (16:9 landscape)",
+    "program_5" => "1200 x 675 px (16:9 landscape)",
 ];
 $FIELDS = [
-    "phone"    => "Phone Number",
+    "phone" => "Phone Number",
+    "location" => "Full Office Address",
+    "focus" => "Focus / Services",
     "whatsapp" => "WhatsApp Number / Link",
-    "email"    => "Email Address",
+    "email" => "Email Address",
 ];
-/* Video / social / page links (key => label) */
-$LINKS = [
-    "social_youtube"      => "Social: YouTube Channel",
-    "social_instagram"    => "Social: Instagram",
-    "social_facebook"     => "Social: Facebook",
-    "social_linkedin"     => "Social: LinkedIn",
-    "home_youtube_1"      => "Home – YouTube Video 1",
-    "home_youtube_2"      => "Home – YouTube Video 2",
-    "home_instagram_1"    => "Home – Instagram Reel 1",
-    "home_workshop_video" => "Home – Workshop Highlight Video",
-    "home_testi_1"        => "Home – Testimonial Video 1",
-    "home_testi_2"        => "Home – Testimonial Video 2",
-    "home_testi_3"        => "Home – Testimonial Screenshot/Video 3",
-    "uyp_schedule_link"   => "UYP – Schedule Link (Know the Schedule button)",
-    "uyp_highlight_video" => "UYP – Highlight Video Link",
-    "uyp_coach_video"     => "UYP – Coach Introduction Video Link",
-    "uyp_testi_video_1"   => "UYP – Testimonial Video 1",
-    "uyp_testi_video_2"   => "UYP – Testimonial Video 2",
-    "uyp_testi_video_3"   => "UYP – Testimonial Video 3",
-    "uyp_sharing_1"       => "UYP – Participant Sharing Video 1",
-    "uyp_sharing_2"       => "UYP – Participant Sharing Video 2",
-    "uyp_sharing_3"       => "UYP – Participant Sharing Video 3",
-    "uyp_review_video"    => "UYP – Video Review Link",
-];
-/* Editable text blocks (key => label) */
 $TEXTS = [
-    "hero_subtext"       => "Home – Hero Intro Paragraph",
-    "footer_about"       => "Footer – About Paragraph",
-    "uyp_batch_date"     => "UYP – Next Batch Date (e.g. 26th June 2026, Friday)",
-    "uyp_total_sessions" => "UYP – Total Sessions (e.g. 18 Sessions)",
-    "uyp_investment"     => "UYP – Investment (e.g. ₹84,500 + 18% GST per participant)",
-    "uyp_stat_lives"     => "UYP – Impact: Lives Touched (e.g. 3,70,000+)",
-    "uyp_stat_stories"   => "UYP – Impact: Success Stories (e.g. 1000+)",
-    "uyp_stat_years"     => "UYP – Impact: Years of Experience (e.g. 14+)",
-    "uyp_stat_reach"     => "UYP – Impact: Monthly Program Reach (e.g. 5000+)",
+    "hero_heading" => "Hero – Heading",
+    "hero_accent" => "Hero – Gold Highlight",
+    "hero_intro" => "Hero – Intro Paragraph",
+    "hero_primary_button" => "Hero – Primary Button",
+    "hero_secondary_button" => "Hero – Secondary Button",
+    "hero_mission_heading" => "Hero – Mission Heading",
+    "hero_mission_text" => "Hero – Mission Text",
+    "hero_quote" => "Hero – Quote",
+    "stat_years" => "Statistics – Years Value",
+    "stat_years_label" => "Statistics – Years Label",
+    "stat_lives" => "Statistics – Lives Touched Value",
+    "stat_lives_label" => "Statistics – Lives Touched Label",
+    "stat_coaching" => "Statistics – One-to-One Value",
+    "stat_coaching_label" => "Statistics – One-to-One Label",
+    "stat_workshops" => "Statistics – Workshops Value",
+    "stat_workshops_label" => "Statistics – Workshops Label",
+    "about_heading" => "About Bhavin – Heading",
+    "about_intro" => "About Bhavin – Paragraph 1",
+    "about_body_1" => "About Bhavin – Paragraph 2",
+    "about_body_2" => "About Bhavin – Paragraph 3",
+    "about_callout" => "About Bhavin – Callout",
+    "programs_heading" => "Programs – Heading",
+    "programs_intro" => "Programs – Intro",
+    "videos_heading" => "Videos – Heading",
+    "videos_intro" => "Videos – Intro",
+    "videos_button" => "Videos – Button",
+    "reviews_heading" => "Success Stories – Heading",
+    "reviews_intro" => "Success Stories – Intro",
+    "coach_heading" => "Coach For Life – Heading",
+    "coach_body_1" => "Coach For Life – Paragraph 1",
+    "coach_body_2" => "Coach For Life – Paragraph 2",
+    "coach_body_3" => "Coach For Life – Paragraph 3",
+    "contact_heading" => "Contact – Heading",
+    "contact_intro" => "Contact – Intro",
+    "enquiry_heading" => "Enquiry Form – Heading",
+    "submit_button" => "Enquiry Form – Submit Button",
+    "footer_about" => "Footer – About Text",
 ];
-/* Map embed (key => label) */
-$MAPS = [
-    "google_map" => "Contact – Google Map (paste embed link or iframe code)",
+$COLORS = [
+    "navy" => "Primary Navy",
+    "navy_2" => "Secondary Navy",
+    "ink" => "Main Text",
+    "muted" => "Muted Text",
+    "gold" => "Primary Gold",
+    "gold_2" => "Light Gold",
+    "line" => "Borders",
+    "paper" => "Page Background",
+    "white" => "White / Surface",
 ];
-
 /* ---------- 2. HELPERS ---------- */
 function load_content($file) {
-    if (!file_exists($file)) return ["images" => [], "fields" => []];
+    if (!file_exists($file)) return ["images" => [], "fields" => [], "texts" => [], "colors" => [], "programs" => [], "testimonials" => []];
     $d = json_decode(file_get_contents($file), true);
     if (!is_array($d)) $d = [];
-    foreach (["images", "fields", "links", "texts", "maps"] as $sec) {
+    foreach (["images", "fields", "texts", "colors", "programs", "testimonials"] as $sec) {
         if (!isset($d[$sec]) || !is_array($d[$sec])) $d[$sec] = [];
     }
     return $d;
 }
 function save_content($file, $data) {
-    file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+    file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), LOCK_EX);
 }
 function load_json_array($file) {
     if (!file_exists($file)) return [];
@@ -190,15 +171,6 @@ if ($logged_in && $_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"
         $notice = "Contact details saved ✔";
     }
 
-    /* d) Save video / social links */
-    if ($_POST["action"] === "links") {
-        foreach ($LINKS as $k => $label) {
-            if (isset($_POST[$k])) $content["links"][$k] = trim($_POST[$k]);
-        }
-        save_content($CONTENT, $content);
-        $notice = "Links saved ✔";
-    }
-
     /* e) Save text blocks */
     if ($_POST["action"] === "texts") {
         foreach ($TEXTS as $k => $label) {
@@ -208,13 +180,51 @@ if ($logged_in && $_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"
         $notice = "Texts saved ✔";
     }
 
-    /* f) Save map */
-    if ($_POST["action"] === "maps") {
-        foreach ($MAPS as $k => $label) {
-            if (isset($_POST[$k])) $content["maps"][$k] = trim($_POST[$k]);
+    if ($_POST["action"] === "colors") {
+        foreach ($COLORS as $k => $label) {
+            $value = trim($_POST[$k] ?? "");
+            if (preg_match('/^#[0-9a-fA-F]{6}$/', $value)) $content["colors"][$k] = $value;
         }
         save_content($CONTENT, $content);
-        $notice = "Map saved ✔";
+        $notice = "Theme colours saved";
+    }
+
+    if ($_POST["action"] === "programs") {
+        $programs = [];
+        for ($i = 0; $i < 5; $i++) {
+            $programs[] = [
+                "type" => trim($_POST["program_type_$i"] ?? ""),
+                "name" => trim($_POST["program_name_$i"] ?? ""),
+                "description" => trim($_POST["program_description_$i"] ?? ""),
+            ];
+        }
+        $content["programs"] = $programs;
+        save_content($CONTENT, $content);
+        $notice = "Programs saved";
+    }
+
+    if ($_POST["action"] === "testimonials") {
+        $testimonials = [];
+        for ($i = 0; $i < 6; $i++) {
+            $testimonials[] = [
+                "quote" => trim($_POST["testimonial_quote_$i"] ?? ""),
+                "name" => trim($_POST["testimonial_name_$i"] ?? ""),
+            ];
+        }
+        $content["testimonials"] = $testimonials;
+        save_content($CONTENT, $content);
+        $notice = "Testimonials saved";
+    }
+
+    if ($_POST["action"] === "advanced") {
+        $decoded = json_decode($_POST["site_json"] ?? "", true);
+        if (is_array($decoded)) {
+            save_content($CONTENT, $decoded);
+            $content = load_content($CONTENT);
+            $notice = "Complete website configuration saved";
+        } else {
+            $notice = "JSON is invalid. Nothing was changed.";
+        }
     }
 }
 
@@ -310,7 +320,7 @@ $content   = load_content($CONTENT);
   <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
     <div>
       <h1 class="font-extrabold tracking-wide">BHAVIN J. SHAH — Admin</h1>
-      <p class="text-[11px] text-amber-400 tracking-widest">PHOTO &amp; CONTENT MANAGER</p>
+      <p class="text-[11px] text-amber-400 tracking-widest">WEBSITE CONTENT &amp; ENQUIRY MANAGER</p>
     </div>
     <div class="flex items-center gap-3">
       <a href="../index.html" target="_blank" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-2 rounded-lg">View Website ↗</a>
@@ -327,8 +337,8 @@ $content   = load_content($CONTENT);
 
   <!-- PHOTOS -->
   <section>
-    <h2 class="text-lg font-extrabold text-slate-900 mb-1">Photos</h2>
-    <p class="text-sm text-slate-500 mb-5">Koi pan jagya ni photo badalva mate, photo pasand karo ane "Update" dabavo.</p>
+    <h2 class="text-lg font-extrabold text-slate-900 mb-1">Current Website Images</h2>
+    <p class="text-sm text-slate-500 mb-5">Hero, about, video, Coach For Life ane 5 program images ahi update karo.</p>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       <?php foreach ($SLOTS as $key => $label):
             $cur = $content["images"][$key] ?? ""; ?>
@@ -370,7 +380,7 @@ $content   = load_content($CONTENT);
   <!-- CONTACT -->
   <section>
     <h2 class="text-lg font-extrabold text-slate-900 mb-1">Contact Details</h2>
-    <p class="text-sm text-slate-500 mb-5">Footer ma dekhati phone, WhatsApp ane email ahi badlo.</p>
+    <p class="text-sm text-slate-500 mb-5">Website par dekhata phone, full address, services, WhatsApp ane email ahi badlo.</p>
     <form method="post" class="bg-white rounded-xl border border-slate-200 p-5 space-y-4 shadow-sm max-w-xl">
       <input type="hidden" name="action" value="fields">
       <?php foreach ($FIELDS as $k => $label):
@@ -385,25 +395,7 @@ $content   = load_content($CONTENT);
     </form>
   </section>
 
-  <!-- VIDEO / SOCIAL LINKS -->
-  <section>
-    <h2 class="text-lg font-extrabold text-slate-900 mb-1">Video &amp; Social Links</h2>
-    <p class="text-sm text-slate-500 mb-5">YouTube, Instagram, video ane social media ni links ahi paste karo (full link, e.g. https://youtu.be/...).</p>
-    <form method="post" class="bg-white rounded-xl border border-slate-200 p-5 grid grid-cols-1 md:grid-cols-2 gap-4 shadow-sm">
-      <input type="hidden" name="action" value="links">
-      <?php foreach ($LINKS as $k => $label):
-            $val = $content["links"][$k] ?? ""; ?>
-        <div>
-          <label class="text-sm font-semibold block mb-1"><?= htmlspecialchars($label) ?></label>
-          <input type="text" name="<?= $k ?>" value="<?= htmlspecialchars($val) ?>" placeholder="https://..."
-                 class="w-full border border-slate-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
-        </div>
-      <?php endforeach; ?>
-      <div class="md:col-span-2">
-        <button class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-6 py-2.5 rounded-lg transition-colors">Save Links</button>
-      </div>
-    </form>
-  </section>
+
 
   <!-- TEXT BLOCKS -->
   <section>
@@ -423,22 +415,66 @@ $content   = load_content($CONTENT);
     </form>
   </section>
 
-  <!-- MAP -->
+
+
+
+  <!-- PROGRAMS -->
   <section>
-    <h2 class="text-lg font-extrabold text-slate-900 mb-1">Google Map</h2>
-    <p class="text-sm text-slate-500 mb-5">Google Maps ma jagya kholo → Share → "Embed a map" → HTML code copy karo ane ahi paste karo.</p>
-    <form method="post" class="bg-white rounded-xl border border-slate-200 p-5 space-y-4 shadow-sm max-w-3xl">
-      <input type="hidden" name="action" value="maps">
-      <?php foreach ($MAPS as $k => $label):
-            $val = $content["maps"][$k] ?? ""; ?>
-        <div>
-          <label class="text-sm font-semibold block mb-1"><?= htmlspecialchars($label) ?></label>
-          <textarea name="<?= $k ?>" rows="3" placeholder='<iframe src="https://www.google.com/maps/embed?..."></iframe>'
-                 class="w-full border border-slate-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"><?= htmlspecialchars($val) ?></textarea>
-        </div>
-      <?php endforeach; ?>
-      <button class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-6 py-2.5 rounded-lg transition-colors">Save Map</button>
+    <h2 class="text-lg font-extrabold text-slate-900 mb-1">Program Cards</h2>
+    <p class="text-sm text-slate-500 mb-5">Current website na 5 programs na type, name ane description ahi badlo.</p>
+    <form method="post" class="space-y-4">
+      <input type="hidden" name="action" value="programs">
+      <?php for ($i = 0; $i < 5; $i++): $program = $content["programs"][$i] ?? []; ?>
+      <div class="bg-white rounded-xl border border-slate-200 p-5 grid grid-cols-1 md:grid-cols-2 gap-4 shadow-sm">
+        <div><label class="text-sm font-semibold block mb-1">Program <?= $i + 1 ?> – Name</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2.5" name="program_name_<?= $i ?>" value="<?= htmlspecialchars($program["name"] ?? "") ?>"></div>
+        <div><label class="text-sm font-semibold block mb-1">Type</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2.5" name="program_type_<?= $i ?>" value="<?= htmlspecialchars($program["type"] ?? "") ?>"></div>
+        <div class="md:col-span-2"><label class="text-sm font-semibold block mb-1">Description</label><textarea rows="2" class="w-full border border-slate-300 rounded-lg px-3 py-2.5" name="program_description_<?= $i ?>"><?= htmlspecialchars($program["description"] ?? "") ?></textarea></div>
+      </div>
+      <?php endfor; ?>
+      <button class="bg-slate-900 text-white font-bold px-6 py-2.5 rounded-lg">Save Programs</button>
     </form>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section>
+    <h2 class="text-lg font-extrabold text-slate-900 mb-1">Success Stories / Testimonials</h2>
+    <p class="text-sm text-slate-500 mb-5">Review quote ane person name update karo.</p>
+    <form method="post" class="space-y-4">
+      <input type="hidden" name="action" value="testimonials">
+      <?php for ($i = 0; $i < 6; $i++): $testimonial = $content["testimonials"][$i] ?? []; ?>
+      <div class="bg-white rounded-xl border border-slate-200 p-5 grid grid-cols-1 md:grid-cols-3 gap-4 shadow-sm">
+        <div class="md:col-span-2"><label class="text-sm font-semibold block mb-1">Testimonial <?= $i + 1 ?></label><textarea rows="2" class="w-full border border-slate-300 rounded-lg px-3 py-2.5" name="testimonial_quote_<?= $i ?>"><?= htmlspecialchars($testimonial["quote"] ?? "") ?></textarea></div>
+        <div><label class="text-sm font-semibold block mb-1">Name</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2.5" name="testimonial_name_<?= $i ?>" value="<?= htmlspecialchars($testimonial["name"] ?? "") ?>"></div>
+      </div>
+      <?php endfor; ?>
+      <button class="bg-slate-900 text-white font-bold px-6 py-2.5 rounded-lg">Save Testimonials</button>
+    </form>
+  </section>
+
+  <!-- THEME -->
+  <section>
+    <h2 class="text-lg font-extrabold text-slate-900 mb-1">Theme Colours</h2>
+    <p class="text-sm text-slate-500 mb-5">Website na global colours ahi update karo.</p>
+    <form method="post" class="bg-white rounded-xl border border-slate-200 p-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 shadow-sm">
+      <input type="hidden" name="action" value="colors">
+      <?php foreach ($COLORS as $k => $label): $value = $content["colors"][$k] ?? "#000000"; ?>
+      <label class="text-sm font-semibold"><span class="block mb-1"><?= htmlspecialchars($label) ?></span><span class="flex gap-2"><input type="color" name="<?= $k ?>" value="<?= htmlspecialchars($value) ?>" class="h-11 w-14 border rounded"><input value="<?= htmlspecialchars($value) ?>" readonly class="flex-1 border border-slate-300 rounded-lg px-3"></span></label>
+      <?php endforeach; ?>
+      <div class="sm:col-span-2 lg:col-span-3"><button class="bg-slate-900 text-white font-bold px-6 py-2.5 rounded-lg">Save Theme Colours</button></div>
+    </form>
+  </section>
+
+  <!-- ADVANCED -->
+  <section>
+    <details class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+      <summary class="font-extrabold cursor-pointer">Advanced – Edit Complete Website Configuration</summary>
+      <p class="text-sm text-slate-500 my-3">Every text, program, testimonial, image reference, contact field ane colour ek jagya thi edit kari shako. Valid JSON j save thashe.</p>
+      <form method="post" class="space-y-3">
+        <input type="hidden" name="action" value="advanced">
+        <textarea name="site_json" rows="24" spellcheck="false" class="w-full font-mono text-xs border border-slate-300 rounded-lg px-3 py-2.5"><?= htmlspecialchars(json_encode($content, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)) ?></textarea>
+        <button class="bg-amber-500 text-slate-900 font-bold px-6 py-2.5 rounded-lg">Save Complete Configuration</button>
+      </form>
+    </details>
   </section>
 
   <!-- ENQUIRIES -->

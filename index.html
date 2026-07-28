@@ -840,23 +840,27 @@
           <h3>Contact Coach For Life</h3>
           <p>Ready to upgrade your success? Share your details and the team can help you choose the right next step.</p>
           <div class="contact-list">
-            <div>Phone: +91-99042-45222</div>
-            <div>Location: Surat, Gujarat</div>
+            <div>Phone: +91 8153 8401 70</div>
+            <div>Location: Coach For Life, D-107, 2nd Floor, SNS Interio, Nr. Bhatar Cross Roads, next to CNG Pump, Bhatar, Athwa, Surat, Gujarat 395017</div>
             <div>Focus: Life Coaching, Business Coaching, Workshops</div>
           </div>
         </div>
-        <form class="contact-form" onsubmit="event.preventDefault(); document.getElementById('formStatus').textContent='Thank you. Your enquiry has been captured locally for this website preview.';">
+        <form class="contact-form" id="enquiryForm" action="submit.php" method="post">
           <h3>Send an Enquiry</h3>
           <div class="form-grid">
-            <input required aria-label="Name" placeholder="Your Name" />
-            <input required aria-label="Phone" placeholder="Phone Number" />
-            <select aria-label="Interest">
-              <option>Business Growth Mastery</option>
-              <option>21 Days Challenge</option>
-              <option>Unleash Your Hidden Potential</option>
-              <option>One-to-One Coaching</option>
+            <input type="hidden" name="form_type" value="Website Enquiry" />
+            <input type="hidden" name="page_url" id="pageUrl" />
+            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px" />
+            <input required name="name" aria-label="Name" placeholder="Your Name" />
+            <input required name="phone" aria-label="Phone" placeholder="Phone Number" />
+            <select name="interest" aria-label="Interest">
+              <option>Business Growth Blueprint</option>
+              <option>Unleash Your Potential</option>
+              <option>Business Energy Formula</option>
+              <option>Get Set Go!</option>
+              <option>Be Productive Not Busy!</option>
             </select>
-            <textarea aria-label="Message" placeholder="What would you like to improve?"></textarea>
+            <textarea name="message" aria-label="Message" placeholder="What would you like to improve?"></textarea>
             <button class="btn btn-dark" type="submit">Submit Enquiry</button>
             <p id="formStatus" style="margin:0;color:var(--green);font-weight:700"></p>
           </div>
@@ -939,6 +943,129 @@
         menuToggle.setAttribute('aria-expanded', 'false');
       });
     });
+
+    const setText = (selector, value) => {
+      const element = document.querySelector(selector);
+      if (element && value !== undefined) element.textContent = value;
+    };
+
+    async function loadWebsiteContent() {
+      try {
+        const response = await fetch(`content.json?v=${Date.now()}`, { cache: 'no-store' });
+        if (!response.ok) return;
+        const content = await response.json();
+        const texts = content.texts || {};
+        const fields = content.fields || {};
+        const images = content.images || {};
+
+        Object.entries(content.colors || {}).forEach(([key, value]) => {
+          if (/^#[0-9a-f]{6}$/i.test(value)) document.documentElement.style.setProperty(`--${key.replace('_', '-')}`, value);
+        });
+
+        const heroHeading = document.querySelector('#home h1');
+        if (heroHeading) heroHeading.innerHTML = `${texts.hero_heading || ''} <span>${texts.hero_accent || ''}</span>`;
+        setText('#home .hero-copy', texts.hero_intro);
+        setText('#home .hero-actions a:nth-child(1)', texts.hero_primary_button);
+        setText('#home .hero-actions a:nth-child(2)', texts.hero_secondary_button);
+        const mission = document.querySelector('#home .mission');
+        if (mission) mission.innerHTML = `<strong>${texts.hero_mission_heading || ''}</strong>${texts.hero_mission_text || ''}`;
+        setText('#home .hero-note', texts.hero_quote);
+
+        const stats = document.querySelectorAll('.stats .stat');
+        const statValues = [
+          [texts.stat_years, texts.stat_years_label],
+          [texts.stat_lives, texts.stat_lives_label],
+          [texts.stat_coaching, texts.stat_coaching_label],
+          [texts.stat_workshops, texts.stat_workshops_label]
+        ];
+        stats.forEach((stat, index) => {
+          if (!statValues[index]) return;
+          setText(`.stats .stat:nth-child(${index + 1}) strong`, statValues[index][0]);
+          setText(`.stats .stat:nth-child(${index + 1}) span`, statValues[index][1]);
+        });
+
+        setText('#about h2', texts.about_heading);
+        const aboutParagraphs = document.querySelectorAll('#about .story p');
+        [texts.about_intro, texts.about_body_1, texts.about_body_2].forEach((value, index) => {
+          if (aboutParagraphs[index] && value !== undefined) aboutParagraphs[index].textContent = value;
+        });
+        setText('#about .quote-panel', texts.about_callout);
+        setText('#programs h2', texts.programs_heading);
+        setText('#programs .section-head p', texts.programs_intro);
+        setText('#videos h2', texts.videos_heading);
+        setText('#videos .video-copy p', texts.videos_intro);
+        setText('#videos .video-copy .btn', texts.videos_button);
+        setText('#success-stories h2', texts.reviews_heading);
+        setText('#success-stories .center-head p', texts.reviews_intro);
+        setText('#coach-for-life h2', texts.coach_heading);
+        const coachParagraphs = document.querySelectorAll('#coach-for-life .story p');
+        [texts.coach_body_1, texts.coach_body_2, texts.coach_body_3].forEach((value, index) => {
+          if (coachParagraphs[index] && value !== undefined) coachParagraphs[index].textContent = value;
+        });
+        setText('#contact .contact-card h3', texts.contact_heading);
+        setText('#contact .contact-card > p', texts.contact_intro);
+        setText('#contact .contact-form h3', texts.enquiry_heading);
+        setText('#contact .contact-form button', texts.submit_button);
+        setText('footer .footer-row > div:nth-child(2)', texts.footer_about);
+
+        const contactRows = document.querySelectorAll('#contact .contact-list > div');
+        if (contactRows[0]) contactRows[0].textContent = `Phone: ${fields.phone || ''}`;
+        if (contactRows[1]) contactRows[1].textContent = `Location: ${fields.location || ''}`;
+        if (contactRows[2]) contactRows[2].textContent = `Focus: ${fields.focus || ''}`;
+
+        const imageMap = {
+          hero_portrait: '#home .hero-card img',
+          about_portrait: '#about .portrait-frame img',
+          video_cover: '#videos .video-main img',
+          coach_portrait: '#coach-for-life .portrait-frame img'
+        };
+        Object.entries(imageMap).forEach(([key, selector]) => {
+          const image = document.querySelector(selector);
+          if (image && images[key]) image.src = images[key];
+        });
+
+        if (Array.isArray(content.programs) && content.programs.length) {
+          const currentImages = Array.from(document.querySelectorAll('#programs .program img')).map((img) => img.src);
+          programGrid.innerHTML = content.programs.map((program, index) => {
+            const configuredImage = images[`program_${index + 1}`];
+            const image = configuredImage || currentImages[index] || '';
+            return `<article class="program"><img src="${image}" alt="${program.name} program visual" /><div class="program-body"><span class="program-type">${program.type}</span><h3>${program.name}</h3><p>${program.description}</p></div></article>`;
+          }).join('');
+          interestSelect.innerHTML = [...content.programs.map((program) => `<option>${program.name}</option>`), '<option>One-to-One Coaching</option>'].join('');
+        }
+
+        if (Array.isArray(content.testimonials) && content.testimonials.length) {
+          const testimonialGrid = document.querySelector('#success-stories .testimonial-grid');
+          testimonialGrid.innerHTML = content.testimonials.map((item) => `<article class="testimonial"><p>"${item.quote}"</p><div class="person">${item.name}</div></article>`).join('');
+        }
+      } catch (error) {
+        console.warn('Website content settings could not be loaded.', error);
+      }
+    }
+
+    const enquiryForm = document.getElementById('enquiryForm');
+    const formStatus = document.getElementById('formStatus');
+    document.getElementById('pageUrl').value = window.location.href;
+    enquiryForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const submitButton = enquiryForm.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      formStatus.textContent = 'Sending your enquiry...';
+      try {
+        const response = await fetch(enquiryForm.action, { method: 'POST', body: new FormData(enquiryForm) });
+        const result = await response.json();
+        if (!response.ok || !result.ok) throw new Error('Submission failed');
+        enquiryForm.reset();
+        document.getElementById('pageUrl').value = window.location.href;
+        formStatus.textContent = 'Thank you. Your enquiry has been submitted.';
+      } catch (error) {
+        formStatus.textContent = 'Enquiry could not be sent. Please call us directly.';
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+
+    loadWebsiteContent();
   </script>
 </body>
 </html>
