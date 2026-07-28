@@ -385,6 +385,21 @@
       font-size: 13px;
       font-weight: 900;
     }
+    .program-body {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .program-type {
+      color: var(--navy);
+      background: #fff8dc;
+      border: 1px solid #efd882;
+      border-radius: 999px;
+      padding: 6px 12px;
+      margin-bottom: 14px;
+      font-size: 13px;
+      font-weight: 900;
+    }
 
     .video-strip {
       display: grid;
@@ -919,6 +934,60 @@
   </footer>
 
   <script>
+    const programs = [
+      {
+        name: 'Business Growth Blueprint',
+        type: 'Free Offline Session',
+        description: 'A focused live session for business owners to identify growth opportunities, gain clarity and create an actionable blueprint.'
+      },
+      {
+        name: 'Unleash Your Potential',
+        type: 'Paid Workshop · 5–6 Months',
+        description: 'An intensive transformational journey designed to unlock potential, strengthen mindset and create lasting personal and professional growth.'
+      },
+      {
+        name: 'Business Energy Formula',
+        type: 'Pre-Recorded Course',
+        description: 'Learn practical principles to improve business energy, align your team and build sustainable momentum at your own pace.'
+      },
+      {
+        name: 'Get Set Go!',
+        type: 'Pre-Recorded Course',
+        description: 'A practical step-by-step course to move from planning to action with greater clarity, confidence and consistency.'
+      },
+      {
+        name: 'Be Productive Not Busy!',
+        type: 'Pre-Recorded Course',
+        description: 'Build better priorities, eliminate unproductive busyness and focus your time on actions that create meaningful results.'
+      }
+    ];
+
+    const programGrid = document.querySelector('#programs .program-grid');
+    const programImages = Array.from(programGrid.querySelectorAll('.program img')).map((image) => ({
+      src: image.src,
+      alt: image.alt
+    }));
+    programGrid.innerHTML = programs.map((program, index) => {
+      const image = programImages[index % programImages.length];
+      return `<article class="program">
+        <img src="${image.src}" alt="${program.name} program visual" />
+        <div class="program-body">
+          <span class="program-type">${program.type}</span>
+          <h3>${program.name}</h3>
+          <p>${program.description}</p>
+        </div>
+      </article>`;
+    }).join('');
+
+    document.querySelector('#programs .section-head p').textContent =
+      'Five clear paths for business and personal growth—choose a live session, an immersive workshop or learn at your own pace.';
+
+    const interestSelect = document.querySelector('select[aria-label="Interest"]');
+    interestSelect.innerHTML = [
+      ...programs.map((program) => `<option>${program.name}</option>`),
+      '<option>One-to-One Coaching</option>'
+    ].join('');
+
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
     menuToggle.addEventListener('click', () => {
