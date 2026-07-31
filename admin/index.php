@@ -73,6 +73,8 @@ $TEXTS = [
     "social_intro" => "Social Media – Intro",
     "social_total" => "Social Media – Total Community Value",
     "social_total_label" => "Social Media – Total Community Label",
+    "podcasts_heading" => "Podcasts – Heading",
+    "podcasts_intro" => "Podcasts – Intro",
     "reviews_heading" => "Success Stories – Heading",
     "reviews_intro" => "Success Stories – Intro",
     "coach_heading" => "Coach For Life – Heading",
@@ -98,10 +100,10 @@ $COLORS = [
 ];
 /* ---------- 2. HELPERS ---------- */
 function load_content($file) {
-    if (!file_exists($file)) return ["images" => [], "fields" => [], "texts" => [], "colors" => [], "programs" => [], "socials" => [], "testimonials" => []];
+    if (!file_exists($file)) return ["images" => [], "fields" => [], "texts" => [], "colors" => [], "programs" => [], "socials" => [], "podcasts" => [], "testimonials" => []];
     $d = json_decode(file_get_contents($file), true);
     if (!is_array($d)) $d = [];
-    foreach (["images", "fields", "texts", "colors", "programs", "socials", "testimonials"] as $sec) {
+    foreach (["images", "fields", "texts", "colors", "programs", "socials", "podcasts", "testimonials"] as $sec) {
         if (!isset($d[$sec]) || !is_array($d[$sec])) $d[$sec] = [];
     }
     return $d;
@@ -229,6 +231,23 @@ if ($logged_in && $_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"
         $content["socials"] = $socials;
         save_content($CONTENT, $content);
         $notice = "Social media cards saved";
+    }
+
+    if ($_POST["action"] === "podcasts") {
+        $podcasts = [];
+        for ($i = 0; $i < 4; $i++) {
+            $url = trim($_POST["podcast_url_$i"] ?? "");
+            $videoId = "";
+            if (preg_match('~(?:youtu\.be/|youtube\.com/(?:watch\?v=|embed/|shorts/))([\w-]{11})~i', $url, $matches)) $videoId = $matches[1];
+            $podcasts[] = [
+                "title" => trim($_POST["podcast_title_$i"] ?? ""),
+                "url" => $url,
+                "thumbnail" => $videoId ? "https://i.ytimg.com/vi/" . $videoId . "/hqdefault.jpg" : trim($_POST["podcast_thumbnail_$i"] ?? ""),
+            ];
+        }
+        $content["podcasts"] = $podcasts;
+        save_content($CONTENT, $content);
+        $notice = "Podcast carousel saved";
     }
 
     if ($_POST["action"] === "testimonials") {
@@ -482,6 +501,27 @@ $content   = merge_content_defaults(load_content($CONTENT), load_content($DEFAUL
       </div>
       <?php endfor; ?>
       <button class="bg-slate-900 text-white font-bold px-6 py-2.5 rounded-lg">Save Social Media</button>
+    </form>
+  </section>
+
+  <!-- PODCASTS -->
+  <section>
+    <h2 class="text-lg font-extrabold text-slate-900 mb-1">Podcast Carousel</h2>
+    <p class="text-sm text-slate-500 mb-5">Website par social media section niche dekhata 4 podcasts na title ane YouTube link ahi update karo. Thumbnail YouTube link mathi automatically aavshe.</p>
+    <form method="post" class="space-y-4">
+      <input type="hidden" name="action" value="podcasts">
+      <?php for ($i = 0; $i < 4; $i++): $podcast = $content["podcasts"][$i] ?? []; ?>
+      <div class="bg-white rounded-xl border border-slate-200 p-5 grid grid-cols-1 md:grid-cols-2 gap-4 shadow-sm">
+        <div class="md:col-span-2 flex items-center gap-4">
+          <?php if (!empty($podcast["thumbnail"])): $podcastThumb = preg_match('~^https?://~i', $podcast["thumbnail"]) ? $podcast["thumbnail"] : "../" . $podcast["thumbnail"]; ?><img src="<?= htmlspecialchars($podcastThumb) ?>" alt="Podcast <?= $i + 1 ?> thumbnail" class="w-36 aspect-video object-cover rounded-lg border"><?php endif; ?>
+          <strong>Podcast <?= $i + 1 ?></strong>
+        </div>
+        <div><label class="text-sm font-semibold block mb-1">Podcast Title</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2.5" name="podcast_title_<?= $i ?>" value="<?= htmlspecialchars($podcast["title"] ?? "") ?>"></div>
+        <div><label class="text-sm font-semibold block mb-1">YouTube Link</label><input type="url" class="w-full border border-slate-300 rounded-lg px-3 py-2.5" name="podcast_url_<?= $i ?>" value="<?= htmlspecialchars($podcast["url"] ?? "") ?>"></div>
+        <input type="hidden" name="podcast_thumbnail_<?= $i ?>" value="<?= htmlspecialchars($podcast["thumbnail"] ?? "") ?>">
+      </div>
+      <?php endfor; ?>
+      <button class="bg-slate-900 text-white font-bold px-6 py-2.5 rounded-lg">Save Podcasts</button>
     </form>
   </section>
 

@@ -44,6 +44,8 @@
     "social_intro": "Connect with Bhavin J. Shah for daily insights, powerful conversations and practical lessons across your favourite platform.",
     "social_total": "506K+",
     "social_total_label": "Total Social Media Community",
+    "podcasts_heading": "Conversations That Create Change",
+    "podcasts_intro": "Watch Bhavin J. Shah share practical insights on business, success, leadership and life.",
     "reviews_heading": "Unveiling Reviews, Sharing Joy!",
     "reviews_intro": "Real voices, real experiences. Dive into testimonials for quick inspiration.",
     "coach_heading": "About Coach For Life",
@@ -67,6 +69,12 @@
     {"platform":"Instagram","action":"Follow","count":"361K","metric":"Followers","handle":"@bhavin_j_shah","cta":"Explore Instagram","url":"https://www.instagram.com/bhavin_j_shah?igsh=Y2J5NGJuMTRrMXoy"},
     {"platform":"YouTube","action":"Subscribe","count":"52.2K","metric":"Subscribers","handle":"@BhavinJShah_","cta":"Watch on YouTube","url":"https://youtube.com/@bhavinjshah_?si=_aDPAlQ_9lvH8u0g"},
     {"platform":"Facebook","action":"Connect","count":"93K","metric":"Followers","handle":"Bhavin J. Shah","cta":"Join on Facebook","url":"https://www.facebook.com/share/1ArQ1bSKoV/"}
+  ],
+  "podcasts": [
+    {"title":"Ideas Are Useless Without Action | Why Most People Never Succeed","url":"https://youtu.be/dvGVoFUBDoc?si=yLIE9RItPM6YRf7u","thumbnail":"assets/podcasts/podcast-1.jpg"},
+    {"title":"Job vs Business: Zero se Crore ka Safar","url":"https://youtu.be/On1LsOX151A?si=lZg20AqEdB7qgznM","thumbnail":"assets/podcasts/podcast-2.jpg"},
+    {"title":"Master Business Growth, Leadership & Team Success","url":"https://youtu.be/rNdhHpF4WMY?si=vwerDHqXcDFp0SQO","thumbnail":"assets/podcasts/podcast-3.jpg"},
+    {"title":"The Parenting Playbook: Tips & Tales","url":"https://youtu.be/W0dkyzn8OQ4?si=Mr25uk2cT9h0_Nf2","thumbnail":"assets/podcasts/podcast-4.jpg"}
   ],
   "testimonials": [
     {"quote":"Just completed a workshop named Unleash Your Hidden Potential. It was an amazing workshop. It gave me a new vision for my professional and personal life.","name":"Abhijit Chhajed"},

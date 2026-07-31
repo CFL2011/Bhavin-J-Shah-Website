@@ -435,6 +435,30 @@
     .social-arrow { width:40px; height:40px; flex:0 0 40px; border-radius:50%; display:grid; place-items:center; background:#fff; color:var(--navy); font-size:20px; transition:transform .3s ease; }
     .social-card:hover .social-arrow { transform:translate(3px,-3px) rotate(-8deg); }
 
+    .podcast-section { position: relative; overflow: hidden; background: linear-gradient(180deg, #f5f7fb 0%, #fff 100%); }
+    .podcast-section::before { content: ""; position: absolute; width: 460px; height: 460px; right: -210px; top: -210px; border-radius: 50%; background: rgba(212,175,55,.14); filter: blur(70px); pointer-events: none; }
+    .podcast-heading { text-align: center; max-width: 720px; margin: 0 auto 38px; }
+    .podcast-heading h2 { margin: 0 0 12px; color: var(--navy); font-size: clamp(38px, 5vw, 62px); line-height: 1; }
+    .podcast-heading p { margin: 0; color: var(--muted); }
+    .podcast-carousel { position: relative; max-width: 1040px; margin: 0 auto; padding: 0 82px; }
+    .podcast-stage { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr); overflow: hidden; min-height: 430px; border: 1px solid rgba(9,21,38,.1); border-radius: 28px; background: rgba(255,255,255,.86); box-shadow: 0 30px 85px rgba(15,32,56,.14); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+    .podcast-media { position: relative; min-height: 430px; overflow: hidden; background: var(--navy); }
+    .podcast-media img { width: 100%; height: 100%; min-height: 430px; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.2,.8,.2,1), opacity .25s ease; }
+    .podcast-stage:hover .podcast-media img { transform: scale(1.025); }
+    .podcast-play { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
+    .podcast-play span { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: rgba(255,0,0,.9); box-shadow: 0 18px 45px rgba(0,0,0,.34); font-size: 25px; padding-left: 4px; }
+    .podcast-copy { padding: 42px 38px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+    .podcast-number { color: var(--gold); font-size: 13px; font-weight: 950; letter-spacing: .16em; text-transform: uppercase; }
+    .podcast-title { margin: 15px 0 26px; color: var(--navy); font-size: clamp(25px, 3vw, 38px); line-height: 1.08; }
+    .podcast-watch { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+    .podcast-watch::after { content: "↗"; font-size: 18px; }
+    .podcast-nav { position: absolute; top: 50%; width: 56px; height: 56px; margin-top: -28px; border: 1px solid rgba(9,21,38,.12); border-radius: 50%; background: #fff; color: var(--navy); box-shadow: 0 14px 35px rgba(15,32,56,.16); cursor: pointer; font-size: 26px; transition: transform .25s ease, background .25s ease, color .25s ease; z-index: 2; }
+    .podcast-nav:hover { transform: scale(1.08); background: var(--navy); color: #fff; }
+    .podcast-prev { left: 0; } .podcast-next { right: 0; }
+    .podcast-dots { display: flex; justify-content: center; gap: 9px; margin-top: 24px; }
+    .podcast-dot { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 999px; background: #cbd3df; cursor: pointer; transition: width .3s ease, background .3s ease; }
+    .podcast-dot.active { width: 30px; background: var(--gold); }
+
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -606,6 +630,9 @@
         grid-template-columns: 1fr;
       }
       .social-card { min-height: 300px; }
+      .podcast-carousel { padding: 0 66px; }
+      .podcast-stage { grid-template-columns: 1fr; }
+      .podcast-media, .podcast-media img { min-height: 360px; }
       .section-head {
         display: grid;
         align-items: start;
@@ -641,6 +668,12 @@
       .stat { padding: 24px 14px; }
       .gallery-card,
       .gallery-card img { min-height: 330px; }
+      .podcast-carousel { padding: 0 0 78px; }
+      .podcast-nav { top: auto; bottom: 0; }
+      .podcast-prev { left: calc(50% - 66px); }
+      .podcast-next { right: calc(50% - 66px); }
+      .podcast-copy { padding: 28px 24px 32px; }
+      .podcast-media, .podcast-media img { min-height: 230px; }
       .footer-row {
         display: grid;
       }
@@ -900,6 +933,30 @@
         </div>
       </div>
     </section>
+    <section class="section podcast-section" id="podcasts">
+      <div class="container">
+        <div class="podcast-heading">
+          <h2>Conversations That Create Change</h2>
+          <p>Watch Bhavin J. Shah share practical insights on business, success, leadership and life.</p>
+        </div>
+        <div class="podcast-carousel" aria-label="Bhavin J. Shah podcasts">
+          <button class="podcast-nav podcast-prev" type="button" aria-label="Previous podcast">‹</button>
+          <article class="podcast-stage" aria-live="polite">
+            <div class="podcast-media">
+              <img src="assets/podcasts/podcast-1.jpg" alt="Podcast 1 thumbnail" />
+              <div class="podcast-play" aria-hidden="true"><span>▶</span></div>
+            </div>
+            <div class="podcast-copy">
+              <span class="podcast-number">Podcast 01 / 04</span>
+              <h3 class="podcast-title">Ideas Are Useless Without Action | Why Most People Never Succeed</h3>
+              <a class="btn btn-gold podcast-watch" href="https://youtu.be/dvGVoFUBDoc?si=yLIE9RItPM6YRf7u" target="_blank" rel="noopener noreferrer">Watch Now!</a>
+            </div>
+          </article>
+          <button class="podcast-nav podcast-next" type="button" aria-label="Next podcast">›</button>
+          <div class="podcast-dots" aria-label="Select podcast"></div>
+        </div>
+      </div>
+    </section>
     <section class="section white" id="success-stories">
       <div class="container">
         <div class="center-head">
@@ -1063,6 +1120,57 @@
       if (element && hasContentValue(value)) element.textContent = value;
     };
 
+    let podcastItems = [
+      { title: 'Ideas Are Useless Without Action | Why Most People Never Succeed', url: 'https://youtu.be/dvGVoFUBDoc?si=yLIE9RItPM6YRf7u', thumbnail: 'assets/podcasts/podcast-1.jpg' },
+      { title: 'Job vs Business: Zero se Crore ka Safar', url: 'https://youtu.be/On1LsOX151A?si=lZg20AqEdB7qgznM', thumbnail: 'assets/podcasts/podcast-2.jpg' },
+      { title: 'Master Business Growth, Leadership & Team Success', url: 'https://youtu.be/rNdhHpF4WMY?si=vwerDHqXcDFp0SQO', thumbnail: 'assets/podcasts/podcast-3.jpg' },
+      { title: 'The Parenting Playbook: Tips & Tales', url: 'https://youtu.be/W0dkyzn8OQ4?si=Mr25uk2cT9h0_Nf2', thumbnail: 'assets/podcasts/podcast-4.jpg' }
+    ];
+    let activePodcast = 0;
+    const podcastStage = document.querySelector('.podcast-stage');
+    const podcastDots = document.querySelector('.podcast-dots');
+    const youtubeIdFromUrl = (value) => {
+      const match = String(value || '').match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/i);
+      return match ? match[1] : '';
+    };
+    const renderPodcast = () => {
+      if (!podcastItems.length) return;
+      activePodcast = (activePodcast + podcastItems.length) % podcastItems.length;
+      const item = podcastItems[activePodcast];
+      const safeUrl = /^https:\/\/(?:www\.)?(?:youtube\.com|youtu\.be)\//i.test(item.url || '') ? item.url : '#';
+      const videoId = youtubeIdFromUrl(safeUrl);
+      const image = podcastStage.querySelector('img');
+      image.src = item.thumbnail || (videoId ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg` : '');
+      image.alt = `Podcast ${activePodcast + 1} thumbnail`;
+      podcastStage.querySelector('.podcast-number').textContent = `Podcast ${String(activePodcast + 1).padStart(2, '0')} / ${String(podcastItems.length).padStart(2, '0')}`;
+      podcastStage.querySelector('.podcast-title').textContent = item.title || `Podcast ${activePodcast + 1}`;
+      podcastStage.querySelector('.podcast-watch').href = safeUrl;
+      podcastDots.querySelectorAll('.podcast-dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === activePodcast);
+        dot.setAttribute('aria-current', index === activePodcast ? 'true' : 'false');
+      });
+    };
+    const setPodcastItems = (items) => {
+      const validItems = items.filter((item) => item && hasContentValue(item.url));
+      if (validItems.length) podcastItems = validItems;
+      activePodcast = 0;
+      podcastDots.innerHTML = podcastItems.map((_, index) => `<button class="podcast-dot${index === 0 ? ' active' : ''}" type="button" aria-label="Show podcast ${index + 1}" data-podcast-index="${index}"></button>`).join('');
+      renderPodcast();
+    };
+    document.querySelector('.podcast-prev').addEventListener('click', () => { activePodcast -= 1; renderPodcast(); });
+    document.querySelector('.podcast-next').addEventListener('click', () => { activePodcast += 1; renderPodcast(); });
+    podcastDots.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-podcast-index]');
+      if (!button) return;
+      activePodcast = Number(button.dataset.podcastIndex);
+      renderPodcast();
+    });
+    document.querySelector('.podcast-carousel').addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') { activePodcast -= 1; renderPodcast(); }
+      if (event.key === 'ArrowRight') { activePodcast += 1; renderPodcast(); }
+    });
+    setPodcastItems(podcastItems);
+
     async function loadWebsiteContent() {
       try {
         const response = await fetch(`content.json?v=${Date.now()}`, { cache: 'no-store' });
@@ -1114,6 +1222,8 @@
         setText('#videos .social-heading p', texts.social_intro);
         setText('#videos .social-total strong', texts.social_total);
         setText('#videos .social-total span', texts.social_total_label);
+        setText('#podcasts h2', texts.podcasts_heading);
+        setText('#podcasts .podcast-heading p', texts.podcasts_intro);
         setText('#success-stories h2', texts.reviews_heading);
         setText('#success-stories .center-head p', texts.reviews_intro);
         setText('#coach-for-life h2', texts.coach_heading);
@@ -1168,6 +1278,10 @@
           });
         }
 
+        if (Array.isArray(content.podcasts) && content.podcasts.length) {
+          setPodcastItems(content.podcasts);
+        }
+
         if (Array.isArray(content.testimonials) && content.testimonials.length) {
           const testimonialGrid = document.querySelector('#success-stories .testimonial-grid');
           testimonialGrid.innerHTML = content.testimonials.map((item) => `<article class="testimonial"><p>"${item.quote}"</p><div class="person">${item.name}</div></article>`).join('');
@@ -1211,7 +1325,7 @@
 
     function applyRevealTargets() {
       const groups = [
-        '.section-head', '.about-grid > *', '.program', '.social-heading', '.social-card',
+        '.section-head', '.about-grid > *', '.program', '.social-heading', '.social-card', '.podcast-heading', '.podcast-stage',
         '.testimonial', '#coach-for-life .about-grid > *', '.contact-grid > *', '.stat'
       ];
       document.querySelectorAll(groups.join(',')).forEach((element, index) => {
