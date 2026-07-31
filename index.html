@@ -440,16 +440,17 @@
     .podcast-heading { text-align: center; max-width: 720px; margin: 0 auto 38px; }
     .podcast-heading h2 { margin: 0 0 12px; color: var(--navy); font-size: clamp(38px, 5vw, 62px); line-height: 1; }
     .podcast-heading p { margin: 0; color: var(--muted); }
-    .podcast-carousel { position: relative; max-width: 1040px; margin: 0 auto; padding: 0 82px; }
-    .podcast-stage { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr); overflow: hidden; min-height: 430px; border: 1px solid rgba(9,21,38,.1); border-radius: 28px; background: rgba(255,255,255,.86); box-shadow: 0 30px 85px rgba(15,32,56,.14); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
-    .podcast-media { position: relative; min-height: 430px; overflow: hidden; background: var(--navy); }
-    .podcast-media img { width: 100%; height: 100%; min-height: 430px; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.2,.8,.2,1), opacity .25s ease; }
+    .podcast-carousel { position: relative; max-width: 920px; margin: 0 auto; padding: 0 82px; touch-action: pan-y; }
+    .podcast-stage { display: flex; flex-direction: column; overflow: hidden; width: 100%; min-height: 610px; border: 1px solid rgba(9,21,38,.1); border-radius: 28px; background: rgba(255,255,255,.86); box-shadow: 0 30px 85px rgba(15,32,56,.14); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+    .podcast-media { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: var(--navy); }
+    .podcast-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.2,.8,.2,1), opacity .25s ease; }
     .podcast-stage:hover .podcast-media img { transform: scale(1.025); }
-    .podcast-play { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
+    .podcast-play { position: absolute; inset: 0; display: grid; place-items: center; cursor: pointer; text-decoration: none; }
     .podcast-play span { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: rgba(255,0,0,.9); box-shadow: 0 18px 45px rgba(0,0,0,.34); font-size: 25px; padding-left: 4px; }
-    .podcast-copy { padding: 42px 38px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+    .podcast-copy { flex: 1; padding: 30px 38px 34px; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; }
     .podcast-number { color: var(--gold); font-size: 13px; font-weight: 950; letter-spacing: .16em; text-transform: uppercase; }
-    .podcast-title { margin: 15px 0 26px; color: var(--navy); font-size: clamp(25px, 3vw, 38px); line-height: 1.08; }
+    .podcast-title { width: 100%; min-height: 2.5em; margin: 12px 0 22px; color: var(--navy); font-size: clamp(24px, 2.5vw, 32px); line-height: 1.25; }
+    .podcast-watch { margin-top: auto; }
     .podcast-watch { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
     .podcast-watch::after { content: "↗"; font-size: 18px; }
     .podcast-nav { position: absolute; top: 50%; width: 56px; height: 56px; margin-top: -28px; border: 1px solid rgba(9,21,38,.12); border-radius: 50%; background: #fff; color: var(--navy); box-shadow: 0 14px 35px rgba(15,32,56,.16); cursor: pointer; font-size: 26px; transition: transform .25s ease, background .25s ease, color .25s ease; z-index: 2; }
@@ -631,8 +632,7 @@
       }
       .social-card { min-height: 300px; }
       .podcast-carousel { padding: 0 66px; }
-      .podcast-stage { grid-template-columns: 1fr; }
-      .podcast-media, .podcast-media img { min-height: 360px; }
+      .podcast-stage { min-height: 560px; }
       .section-head {
         display: grid;
         align-items: start;
@@ -672,8 +672,9 @@
       .podcast-nav { top: auto; bottom: 0; }
       .podcast-prev { left: calc(50% - 66px); }
       .podcast-next { right: calc(50% - 66px); }
-      .podcast-copy { padding: 28px 24px 32px; }
-      .podcast-media, .podcast-media img { min-height: 230px; }
+      .podcast-stage { min-height: 470px; }
+      .podcast-copy { padding: 24px 22px 28px; }
+      .podcast-title { min-height: 3.75em; font-size: 23px; }
       .footer-row {
         display: grid;
       }
@@ -944,7 +945,7 @@
           <article class="podcast-stage" aria-live="polite">
             <div class="podcast-media">
               <img src="assets/podcasts/podcast-1.jpg" alt="Podcast 1 thumbnail" />
-              <div class="podcast-play" aria-hidden="true"><span>▶</span></div>
+              <a class="podcast-play" href="https://youtu.be/dvGVoFUBDoc?si=yLIE9RItPM6YRf7u" target="_blank" rel="noopener noreferrer" aria-label="Watch podcast 1 on YouTube"><span aria-hidden="true">▶</span></a>
             </div>
             <div class="podcast-copy">
               <span class="podcast-number">Podcast 01 / 04</span>
@@ -1145,6 +1146,9 @@
       podcastStage.querySelector('.podcast-number').textContent = `Podcast ${String(activePodcast + 1).padStart(2, '0')} / ${String(podcastItems.length).padStart(2, '0')}`;
       podcastStage.querySelector('.podcast-title').textContent = item.title || `Podcast ${activePodcast + 1}`;
       podcastStage.querySelector('.podcast-watch').href = safeUrl;
+      const playLink = podcastStage.querySelector('.podcast-play');
+      playLink.href = safeUrl;
+      playLink.setAttribute('aria-label', `Watch podcast ${activePodcast + 1} on YouTube`);
       podcastDots.querySelectorAll('.podcast-dot').forEach((dot, index) => {
         dot.classList.toggle('active', index === activePodcast);
         dot.setAttribute('aria-current', index === activePodcast ? 'true' : 'false');
@@ -1169,6 +1173,22 @@
       if (event.key === 'ArrowLeft') { activePodcast -= 1; renderPodcast(); }
       if (event.key === 'ArrowRight') { activePodcast += 1; renderPodcast(); }
     });
+    let podcastTouchStartX = 0;
+    let podcastTouchStartY = 0;
+    const podcastCarousel = document.querySelector('.podcast-carousel');
+    podcastCarousel.addEventListener('touchstart', (event) => {
+      const touch = event.changedTouches[0];
+      podcastTouchStartX = touch.clientX;
+      podcastTouchStartY = touch.clientY;
+    }, { passive: true });
+    podcastCarousel.addEventListener('touchend', (event) => {
+      const touch = event.changedTouches[0];
+      const deltaX = touch.clientX - podcastTouchStartX;
+      const deltaY = touch.clientY - podcastTouchStartY;
+      if (Math.abs(deltaX) < 48 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+      activePodcast += deltaX < 0 ? 1 : -1;
+      renderPodcast();
+    }, { passive: true });
     setPodcastItems(podcastItems);
 
     async function loadWebsiteContent() {
