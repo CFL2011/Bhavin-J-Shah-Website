@@ -1301,7 +1301,11 @@
         };
         Object.entries(imageMap).forEach(([key, selector]) => {
           const image = document.querySelector(selector);
-          if (image && images[key]) image.src = images[key];
+          if (!image || !images[key]) return;
+          const configuredImage = key === 'hero_portrait' && images[key] === 'assets/admin-defaults/hero_portrait.jpg'
+            ? 'assets/bhavin-hero-cutout.png'
+            : images[key];
+          image.src = configuredImage;
         });
 
         if (Array.isArray(content.programs) && content.programs.length) {

@@ -106,6 +106,9 @@ function load_content($file) {
     foreach (["images", "fields", "texts", "colors", "programs", "socials", "podcasts", "testimonials"] as $sec) {
         if (!isset($d[$sec]) || !is_array($d[$sec])) $d[$sec] = [];
     }
+    if (($d["images"]["hero_portrait"] ?? "") === "assets/admin-defaults/hero_portrait.jpg") {
+        $d["images"]["hero_portrait"] = "assets/bhavin-hero-cutout.png";
+    }
     return $d;
 }
 function merge_content_defaults($content, $defaults) {
