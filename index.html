@@ -765,17 +765,48 @@
       .section { padding: 62px 0; }
       .stats,
       .feature-grid,
-      .review-platform-grid,
       .program-grid,
       .blog-grid,
       .testimonial-grid,
       .gallery-grid {
         grid-template-columns: 1fr;
       }
+      .review-platform-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
       .review-platform {
-        align-items: flex-start;
+        display: grid;
+        justify-items: center;
+        text-align: center;
+        gap: 12px;
         min-height: 0;
-        padding: 24px;
+        padding: 16px 12px;
+      }
+      .review-logo {
+        width: 48px;
+        height: 48px;
+        flex-basis: 48px;
+        border-radius: 14px;
+      }
+      .review-logo svg {
+        width: 28px;
+        height: 28px;
+      }
+      .review-copy {
+        gap: 6px;
+        justify-items: center;
+      }
+      .review-copy strong {
+        font-size: 16px;
+        line-height: 1.15;
+      }
+      .review-stars {
+        font-size: 12px;
+      }
+      .review-copy p {
+        font-size: 12px;
+        line-height: 1.35;
       }
       .stat { padding: 24px 14px; }
       .gallery-card,
