@@ -60,7 +60,7 @@
   },
   "programs": [
     {"type":"Free Offline Session","name":"Business Growth Blueprint","description":"A focused live session for business owners to identify growth opportunities, gain clarity and create an actionable blueprint.","link":"#contact"},
-    {"type":"Paid Workshop · 5–6 Months","name":"Unleash Your Potential","description":"An intensive transformational journey designed to unlock potential, strengthen mindset and create lasting personal and professional growth.","link":"#contact"},
+    {"type":"Paid Workshop","name":"Unleash Your Potential","description":"An intensive transformational journey designed to unlock potential, strengthen mindset and create lasting personal and professional growth.","link":"#contact"},
     {"type":"Pre-Recorded Course","name":"Business Energy Formula","description":"Learn practical principles to improve business energy, align your team and build sustainable momentum at your own pace.","link":"#contact"},
     {"type":"Pre-Recorded Course","name":"Get Set Go!","description":"A practical step-by-step course to move from planning to action with greater clarity, confidence and consistency.","link":"#contact"},
     {"type":"Pre-Recorded Course","name":"Be Productive Not Busy!","description":"Build better priorities, eliminate unproductive busyness and focus your time on actions that create meaningful results.","link":"#contact"}
