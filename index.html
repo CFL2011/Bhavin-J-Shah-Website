@@ -1298,6 +1298,7 @@
     };
 
     let podcastItems = [
+      { title: 'Podcast with Padmashri Shri Savjikaka Dholakia', url: 'https://youtu.be/32IZ_iAluG4', thumbnail: 'https://i.ytimg.com/vi/32IZ_iAluG4/maxresdefault.jpg' },
       { title: 'Ideas Are Useless Without Action | Why Most People Never Succeed', url: 'https://youtu.be/dvGVoFUBDoc?si=yLIE9RItPM6YRf7u', thumbnail: 'assets/podcasts/podcast-1.jpg' },
       { title: 'Job vs Business: Zero se Crore ka Safar', url: 'https://youtu.be/On1LsOX151A?si=lZg20AqEdB7qgznM', thumbnail: 'assets/podcasts/podcast-2.jpg' },
       { title: 'Master Business Growth, Leadership & Team Success', url: 'https://youtu.be/rNdhHpF4WMY?si=vwerDHqXcDFp0SQO', thumbnail: 'assets/podcasts/podcast-3.jpg' },
@@ -1479,7 +1480,9 @@
         }
 
         if (Array.isArray(content.podcasts) && content.podcasts.length) {
-          setPodcastItems(content.podcasts);
+          const featuredPodcast = podcastItems[0];
+          const remainingPodcasts = content.podcasts.filter((item) => item && item.url !== featuredPodcast.url);
+          setPodcastItems([featuredPodcast, ...remainingPodcasts]);
         }
 
         if (Array.isArray(content.testimonials) && content.testimonials.length) {
