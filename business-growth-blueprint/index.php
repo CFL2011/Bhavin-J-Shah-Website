@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (($previous['form_type'] ?? '') === 'Business Growth Blueprint' && ($previous['ip'] ?? '') === ($_SERVER['REMOTE_ADDR'] ?? '') && ($previous['created_at'] ?? 0) > $now - 600) $recent++;
     }
     if ($recent >= 5) { flock($file, LOCK_UN); fclose($file); bgb_reply(429, ['ok'=>false,'error'=>'Too many requests. Please wait a few minutes or contact the team.']); }
-    $record = ['id'=>$id,'date'=>(new DateTimeImmutable('now', new DateTimeZone('Asia/Kolkata')))->format('Y-m-d H:i:s'),'created_at'=>$now,'form_type'=>'Business Growth Blueprint','fields'=>$fields,'page_url'=>'https://www.bhavinjshah.com/business-growth-blueprint/','ip'=>$_SERVER['REMOTE_ADDR'] ?? ''];
+    $record = ['id'=>$id,'date'=>(new DateTimeImmutable('now', new DateTimeZone('Asia/Kolkata')))->format('Y-m-d H:i:s'),'created_at'=>$now,'form_type'=>'Business Growth Blueprint','fields'=>$fields,'page_url'=>defined('BGB_PAGE_URL') ? BGB_PAGE_URL : 'https://www.bhavinjshah.com/business-growth-blueprint/','ip'=>$_SERVER['REMOTE_ADDR'] ?? ''];
     $all[] = $record;
     $json = json_encode($all, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE);
     rewind($file);
